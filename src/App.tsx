@@ -1,15 +1,25 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-// import './App.css'
-import '../index.css'
+import { Routes } from "react-router-dom"
+import { Route } from "react-router-dom"
+
+
+
+// pages 
+import Home from "./pages/Home"
+import Product from "./pages/Home/Product"
+
 
 function App() {
   
   return (
-   <div className='w-screen h-screen bg-slate-900'>
-
-       hELLO
-    </div>
+    <Routes>
+      <Route path="/" element= {<Home/>}>
+        <Route index element={<Home/>}/>
+        <Route path="collections" >
+           <Route path=":user"  element={<Product/>}/>
+        </Route>
+      </Route>
+      
+    </Routes>
   )
 }
 
