@@ -56,7 +56,7 @@ const Header: React.FC<Props> = ({ }) => {
 
                     </div>
 
-                    <div className="flex justify-around items-center flex-grow text-center relative z-[500]">
+                    <div className="absolute flex justify-around items-center flex-grow text-center left-1/2 -translate-x-1/2">
 
                          <Logo />
                     </div>
