@@ -26,7 +26,7 @@ const ProductSideBar = () => {
                     </span>
                 </div>
                 <div className='flex justify-between items-end '>
-                    <p className='text-[16x] leading-none  p-0 ' style={{ lineHeight: '0.5' }}><pre className='inline-block text-inherit leading-[0.5]'>₦</pre>42140</p>
+                    <p className='text-[16x] leading-none  p-0 ' ><span className='leading-[0.7] inline-block '>₦</span>42140</p>
                    <Counter/>
                 </div>
 
