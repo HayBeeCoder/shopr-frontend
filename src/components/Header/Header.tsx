@@ -38,7 +38,7 @@ const Header: React.FC<Props> = ({ }) => {
           // console.log(menuOpen)
      return (
           <>
-               <header className="flex justify-between px-[12px] lg:px-[28px] relative py-[30px] basis-2/6 flex-1 items-center z-[1000]">
+               <header className="flex justify-between px-[12px] lg:px-[28px] relative py-[13px] md:py-[30px] basis-2/6 flex-1 items-center z-[1000]">
                
 
                     {/* both div and Siidebar below will be controlled by hamburger state  */}
