@@ -18,6 +18,7 @@ import Sidebar from "../Sidebar";
 
 import Logo from "../Logo"
 import Nav from "../Nav"
+import Overlay from "./Overlay";
 
 
 interface Props {
@@ -41,8 +42,9 @@ const Header: React.FC<Props> = ({ }) => {
                
 
                     {/* both div and Siidebar below will be controlled by hamburger state  */}
-                    {menuOpen && <div className="md:hidden w-screen left-0 top-0 h-screen z-[990] bg-black/50 fixed"></div>}
+                    {/* {menuOpen && <div className="md:hidden w-screen left-0 top-0 h-screen z-[990] bg-black/50 fixed" handleClick={handleCloseClick}></div>} */}
                     <Sidebar menuOpen={menuOpen} handleCloseClick={handleCloseClick}/>
+                    <Overlay menuOpen={menuOpen} handleClick={handleCloseClick}/>
 
                     <div className="md:hidden md:w-[330px] md:gap-10">
                         <Hamburger handleClick={handleHamburgerClick} />
