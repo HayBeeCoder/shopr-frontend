@@ -38,7 +38,7 @@ const CartModal = () => {
                         <ProductSideBar />
                         {/* product  */}
                     </div>
-<div className='flex flex-col  gap-4 shadow-[0_-2px_5px_0px_rgba(0,0,0,0.1)]  py-6 px-3 lg:px-7  w-full bg-white flex-grow flex-shrink-0 absolute bottom-0'>
+<div className='flex flex-col  gap-4 shadow-[0_-2px_5px_0px_rgba(0,0,0,0.1)]  py-6 px-3 lg:px-7   bg-white flex-grow flex-shrink-0 w-screen max-w-[500px]  fixed bottom-0 right-0'>
                         <div className='flex justify-between '>
 
                             <p>subtotal</p>
