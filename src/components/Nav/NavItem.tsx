@@ -8,7 +8,7 @@ interface Props {
 
 const NavItem: React.FC<Props> = ({ user }) => {
 
-    const activeClassName = "text-secondary-600 text-2xl no-underline "
+    const activeClassName = "text-secondary-600 text-xl md:text-2xl no-underline "
 
 
     return (
@@ -18,7 +18,7 @@ const NavItem: React.FC<Props> = ({ user }) => {
                 isActive ? activeClassName : ""
             }
         >
-            <li className='text-[18px] font-normal underline-offset-4 hover:underline no-underline ' >
+            <li className='lg:text-[18px] font-normal underline-offset-4 hover:underline no-underline text-3xl ' >
 
 
 

@@ -9,7 +9,7 @@ const Nav = () => {
 
   return (
     <>
-    <ul className='flex items-center gap-[70px]'>
+    <ul className='items-start md:items-center gap-[30px] lg:gap-[70px] flex flex-col md:flex-row '>
         
           {
               LINKS.map((link,index) => <NavItem user={link} key={index}/>)

@@ -11,6 +11,7 @@ import Product from "./pages/Home/Product"
 function App() {
   
   return (
+   
     <Routes>
       <Route path="/" element= {<Home/>}>
         <Route index element={<Home/>}/>
@@ -24,3 +25,5 @@ function App() {
 }
 
 export default App
+
+ 

@@ -23,19 +23,19 @@ const Logo: React.FC<Props> = ({  }) => {
      */
      return (
           <>
-               <a href="/">
-
-                    <p className="inline-block text-[32px] text-primary-800 tracking-[4px] font-bold font-redhat relative left-0">
-
-                         <span>S</span>
-                         <span>H</span>
-                         <span className="text-secondary-500">O</span>
-                         <span>P</span>
-                         <span>R</span>
+                    <p className="leading-[0px] inline-block text-[24px] text-primary-800 tracking-[4px] font-bold font-redhat  ">
+               <a href="/" className="leading-[0px]">
 
 
-                    </p>
+                         <span className="leading-[0px] inline-block">S</span>
+                         <span className="leading-[0px] inline-block">H</span>
+                         <span className="leading-[0px] inline-block text-secondary-500">O</span>
+                         <span className="leading-[0px] inline-block">P</span>
+                         <span className="leading-[0px] inline-block">R</span>
+
+
                </a>
+                    </p>
           </>
      )
 
