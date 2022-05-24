@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
-import { ReactComponent as ProfileIcon } from "../../assets/svgs/profile.svg"
-import { ReactComponent as ProfileInactive } from "../../assets/svgs/profile-inactive.svg"
+import { ReactComponent as ProfileIcon } from "../../../assets/svgs/profile.svg"
+// import { ReactComponent as ProfileIcon } from ""
+import { ReactComponent as ProfileInactive } from "../../../assets/svgs/profile-inactive.svg"
 // 
 
 

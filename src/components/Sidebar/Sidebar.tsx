@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { ReactComponent as Close } from '../../assets/svgs/close.svg'
 import Nav from '../Nav'
+import CloseIcon from "../CloseIcon"
 
 interface Props {
     menuOpen: boolean;
@@ -13,11 +14,12 @@ const Sidebar:React.FC<Props> = ({menuOpen,handleCloseClick}) => {
     const translate = menuOpen ? " translate-x-0" : " -translate-x-full"
     return (
         <>
-            <section className= {'md:hidden  fixed w-5/6 bg-white h-screen px-[15px] pt-[30px]  z-[1000] left-0 top-0 transform-gpu duration-200 ease-out ' + translate}>
+            <section className= {'md:hidden  fixed w-5/6 bg-white h-screen px-[13px] pt-[15px]  z-[1000] left-0 top-0 transform-gpu duration-200 ease-out ' + translate}>
                 <div className='flex flex-col gap-16'>
-                <button className='text-[32px] p-1 ' onClick={handleCloseClick}>
+                    <CloseIcon handleClick={handleCloseClick}/>
+                {/* <button className='text-[32px] p-1 ' onClick={handleCloseClick}>
                     <Close />
-                </button>
+                </button> */}
 
                 <div className='pt-9'>
 
