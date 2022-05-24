@@ -8,9 +8,9 @@ import ProductSideBar from '../../ProductSideBar.tsx/ProductSideBar'
 const CartModal = () => {
     const navigate = useNavigate()
     return (
-        <section className='relative w-screen max-w-[420px] '>
+        <section className='relative w-screen max-w-[420px] h-screen'>
             <Overlay menuOpen={true} handleClick={() => navigate(-1)} />
-            <div className='w-screen max-w-[500px]  fixed top-0 right-0 h-screen bg-white pt-[15px] md:[pt-30px]  z-[1100] py-[13px] md:py-[30px] flex flex-col'>
+            <div className='w-screen max-w-[500px]  fixed top-0 right-0 overflow-scroll h-screen bg-white pt-[15px] md:[pt-30px]  z-[1100] py-[13px] md:py-[30px] flex flex-col '>
 
                 <div className='flex justify-between items-center  gap-4 px-3 lg:px-7'>
                     <div className='flex-grow flex items-end gap-1'>
@@ -25,8 +25,8 @@ const CartModal = () => {
                     <CloseIcon handleClick={() => navigate(-1)} />
                 </div>
 
-                <div className=' flex-grow overflow-hidden flex flex-col'>
-                    <div className='flex-shrink flex-grow-0 h-full  my-auto overflow-y-scroll mt-5 py-4 divide-y-[20px] divide-white px-3 lg:px-7  '>
+                <div className='flex-grow  top-0 bottom-0  pb-[140px] overflow-y-scroll'>
+                    <div className='flex-shrink flex-grow-0  my-auto overflow-y-scroll mt-5 py-4 divide-y-[20px] divide-white px-3 lg:px-7  '>
 
                         {/* product  */}
                         <ProductSideBar />
@@ -38,7 +38,7 @@ const CartModal = () => {
                         <ProductSideBar />
                         {/* product  */}
                     </div>
-<div className='flex flex-col  gap-4 shadow-[0_-2px_5px_0px_rgba(0,0,0,0.1)]  py-6 px-3 lg:px-7 bottom-0 left-0 w-full bg-white flex-grow'>
+<div className='flex flex-col  gap-4 shadow-[0_-2px_5px_0px_rgba(0,0,0,0.1)]  py-6 px-3 lg:px-7  w-full bg-white flex-grow flex-shrink-0 absolute bottom-0'>
                         <div className='flex justify-between '>
 
                             <p>subtotal</p>
