@@ -60,24 +60,10 @@ const Header: React.FC<Props> = ({ }) => {
                     </div>
 
                     <div className="flex  md:w-[330px] gap-5 justify-end ">
-                         {/* <button >
-                              <span className="text-[32px]">
-                                   {userLoggedIn ? <Profile/> : <ProfileInactive/>}
-                              </span>
-                         </button> */}
+                         
                          <Profile/>
                          <Cart/>
-                         {/* <div>
-
-                              <NavLink to="/cart">
-                                   <span className="text-[32px] relative">
-                                        <span className="inline-block leading-[0.5rem] absolute transform translate-x-2 -translate-y-2 top-0 right-0 p-2 bg-secondary-600 rounded-full text-[10px]">3</span>
-                                        <Cart />
-                                   </span>
-                              </NavLink>
-                         </div> */}
-
-
+                         
                     </div>
                </header>
           </>
