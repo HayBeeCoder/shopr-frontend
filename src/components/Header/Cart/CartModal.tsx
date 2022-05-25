@@ -44,7 +44,7 @@ const CartModal = () => {
                             <p>subtotal</p>
                             <p className='text-[16x] leading-none  p-0 block ' >₦42140</p>
                         </div>
-                        <button className='text-white py-3 bg-secondary-600 w-full block'>
+                        <button className='text-white py-3 bg-secondary-600 w-full block font-bold rounded-lg'>
                             Proceed to Checkout
                         </button>
                     </div> 
