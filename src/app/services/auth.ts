@@ -12,13 +12,19 @@ export interface UserResponse {
 }
 
 export interface LoginRequest {
-  username: string
+  username: string,
+  password: string,
+}
+
+export interface SignUpRequest {
+  username: string,
+  email: string,
   password: string
 }
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: '/',
+    baseUrl: 'https://shopr-server-main.herokuapp.com/api/',
     prepareHeaders: (headers, { getState }) => {
       // By default, if we have a token in the store, let's use that for authenticated requests
       const token = (getState() as RootState).auth.token
@@ -29,6 +35,7 @@ export const api = createApi({
     },
   }),
   endpoints: (builder) => ({
+    
     login: builder.mutation<UserResponse, LoginRequest>({
       query: (credentials) => ({
         url: 'login',
@@ -36,9 +43,17 @@ export const api = createApi({
         body: credentials,
       }),
     }),
+   
     protected: builder.mutation<{ message: string }, void>({
       query: () => 'protected',
     }),
+    signup: builder.mutation<{data : string}, SignUpRequest>({
+      query: (credentials) => ({
+        url: 'signup',
+        method: 'POST',
+        body: credentials
+      })
+  }),
     // "api/user/all": builder.
   }),
 })

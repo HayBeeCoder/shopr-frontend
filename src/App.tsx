@@ -1,8 +1,6 @@
 import { Routes, useLocation } from "react-router-dom"
 import { Route } from "react-router-dom"
 
-
-
 // pages 
 import Home from "./pages/Home"
 import Product from "./pages/Home/Product"
@@ -13,6 +11,7 @@ import Layout from "./features/auth/Layout"
 
 
 function App() {
+  
   const location = useLocation()
   let state = location.state as { backgroundLocation?: Location };
 

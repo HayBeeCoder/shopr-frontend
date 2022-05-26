@@ -3,6 +3,7 @@ import Input from '../../components/Input'
 import Button from '../../components/Button'
 import { fieldValidator } from "../../helpers/fieldValidator.signup"
 import { Link } from 'react-router-dom'
+import validateForm from './formValidator'
 
 
 import { ReactComponent as Email } from '../../assets/svgs/email.svg'
@@ -11,7 +12,6 @@ import { ReactComponent as Eyes } from '../../assets/svgs/eyes.svg'
 
 
 interface IInfo {
-
   first_name: string,
   last_name: string,
   email: string,
@@ -38,9 +38,20 @@ const SignUp = () => {
 
   }
 
-  console.log(error)
-  console.log(info)
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
 
+    const fieldData = {
+      username: info.first_name + ' ' + info.last_name,
+      email: info.email,
+      password: info.password
+    }
+
+    // console.log(fieldData)
+
+
+    
+  }
 
 
   return (
@@ -49,7 +60,7 @@ const SignUp = () => {
         <h1 className='text-3xl font-bold leading-none'>Create An Account</h1>
         <p className='text-xs text-primary-100 leading-none'>Complete your sign up and start shopping</p>
       </div>
-      <form action="" className='mx-auto w-11/12 md:w-9/12 flex flex-col items-stretch gap-3'>
+      <form action="" className='mx-auto w-11/12 md:w-9/12 flex flex-col items-stretch gap-3' onSubmit={handleSubmit}>
       
         <div className='flex flex-col gap-3 md:flex-row md:gap-4 w-full '>
           <Input label='First Name' labelFor='first_name' placeholder='John' type='text' value={info.first_name} handleChange={handleChange} />
@@ -69,7 +80,7 @@ const SignUp = () => {
         {/* </div> */}
         {/* </div> */}
         <div className='mt-7'>
-          <Button>
+          <Button disabled={!validateForm(error,info  )}>
             Sign Up
           </Button>
           <p className='text-xs mt-1 text-primary-100'>Already have an account?
