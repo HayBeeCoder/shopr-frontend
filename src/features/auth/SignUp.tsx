@@ -50,21 +50,7 @@ const SignUp = () => {
         <p className='text-xs text-primary-100 leading-none'>Complete your sign up and start shopping</p>
       </div>
       <form action="" className='mx-auto w-11/12 md:w-9/12 flex flex-col items-stretch gap-3'>
-        {/* <div> */}
-        {/* <label htmlFor="first_name text-xs text-left">
-            <p className='text-left text-xs'>First Name</p>
-            <input type="text" placeholder='John' className='text-xs outline-none p-2  border-solid border-[1px] border-secondary-600 rounded-md  block' />
-          </label> */}
-        {/* <label htmlFor="first_name " className='text-left text-xs inline-block'>
-            First Name
-            <p className='text-left relative'>
-              <input type="text" placeholder='John' className='outline-none p-2 pr-9 border-solid border-[1px] border-secondary-600 rounded-md  block text-xs' />
-
-              <span className='text-[32px] absolute right-0 top-1/2 -translate-y-1/2 '>
-                <Email />
-              </span>
-            </p>
-          </label> */}
+      
         <div className='flex flex-col gap-3 md:flex-row md:gap-4 w-full '>
           <Input label='First Name' labelFor='first_name' placeholder='John' type='text' value={info.first_name} handleChange={handleChange} />
           <Input label='Last Name' labelFor='last_name' placeholder='Doe' type='text' value={info.last_name} handleChange={handleChange} />

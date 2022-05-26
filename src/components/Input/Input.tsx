@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 
 interface Props {
     placeholder: string,
@@ -12,7 +12,25 @@ interface Props {
 
 }
 
+let inputType:string
+
 const Input:React.FC<Props> = ({placeholder,label,labelFor,children ,type , handleChange , value} ) => {
+
+const handleEyesClick = (e: React.FormEvent) => {
+  const previousSibling = e.currentTarget.previousSibling as HTMLInputElement
+  if(inputType === undefined && previousSibling.type == "password") inputType = previousSibling.type
+  if(inputType){
+    if(previousSibling.type == "password") {
+      previousSibling.type = "text"
+    }else previousSibling.type = "password"
+  }
+  // console.log(e)
+  // console.log(e.currentTarget.children)
+// console.log(children)
+  // console.log(previousSibling.type)
+  // console.log(previousSibling)
+}
+
   return (
     <label htmlFor={labelFor} className='text-left text-xs inline-block w-full'>
     {label}
@@ -28,7 +46,7 @@ const Input:React.FC<Props> = ({placeholder,label,labelFor,children ,type , hand
       
       {
           children && (
-            <button className='text-[32px] absolute right-0 top-1/2 -translate-y-1/2  px-1'>
+            <button className='text-[32px] absolute right-0 top-1/2 -translate-y-1/2  px-1' type='button' onClick={handleEyesClick} > 
             {children}
           </button>
           )
