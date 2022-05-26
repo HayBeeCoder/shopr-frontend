@@ -7,7 +7,7 @@ import { Route } from "react-router-dom"
 import Home from "./pages/Home"
 import Product from "./pages/Home/Product"
 import CartModal from "./components/Header/Cart/CartModal"
-import LogIn from "./features/auth/Login"
+import LogIn from "./features/auth/Login/Login"
 import SignUp from "./features/auth/SignUp"
 import Layout from "./features/auth/Layout"
 

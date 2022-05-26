@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Input from '../../components/Input'
 import Button from '../../components/Button'
 import { fieldValidator } from "../../helpers/fieldValidator.signup"
+import { Link } from 'react-router-dom'
 
 
 import { ReactComponent as Email } from '../../assets/svgs/email.svg'
@@ -85,7 +86,11 @@ const SignUp = () => {
           <Button>
             Sign Up
           </Button>
-          <p className='text-xs'>Already have an account? <span className='underline'>Log In</span> </p>
+          <p className='text-xs mt-1 text-primary-100'>Already have an account?
+          <Link to="/auth/login">
+           <span className='underline text-primary-800'> Log In</span> 
+          </Link>
+           </p>
         </div>
       </form>
     </div>
