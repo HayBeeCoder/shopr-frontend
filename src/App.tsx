@@ -7,6 +7,9 @@ import { Route } from "react-router-dom"
 import Home from "./pages/Home"
 import Product from "./pages/Home/Product"
 import CartModal from "./components/Header/Cart/CartModal"
+import LogIn from "./features/auth/Login"
+import SignUp from "./features/auth/SignUp"
+import Layout from "./features/auth/Layout"
 
 
 function App() {
@@ -23,6 +26,11 @@ function App() {
         <Route path="collections" >
            <Route path=":user"  element={<Product/>}/>
         </Route>
+      </Route>
+      <Route path="/auth" element={<Layout/>}>
+        <Route path="login" element= {<LogIn/>}/>
+        <Route path="signup" element= {<SignUp/>}/>
+        
       </Route>
       
     </Routes>

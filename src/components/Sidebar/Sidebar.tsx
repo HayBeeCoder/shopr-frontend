@@ -28,14 +28,14 @@ const Sidebar:React.FC<Props> = ({menuOpen,handleCloseClick}) => {
                 <div className='flex gap-3 items-center justify-between '>
                     {/* <div className='flex-grow flex-shrink-0 bg-orange-400'> */}
 
-                    <Link to="/login" className='w-full  inline-block flex-grow'>
+                    <Link to="/auth/login" className='w-full  inline-block flex-grow'>
 
                     <button className='text-white font-bold p-[12px] bg-secondary-600 w-full rounded-md'>
                         Log In
                     </button>
                     </Link>
                     {/* </div> */}
-                    <Link to="/signup" className='inline-block flex-grow w-full '>
+                    <Link to="/auth/signup" className='inline-block flex-grow w-full '>
 
                     <button className='text-white font-bold p-[12px] bg-secondary-600 w-full rounded-md'>
                         Sign Up

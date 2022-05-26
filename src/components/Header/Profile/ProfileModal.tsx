@@ -6,13 +6,13 @@ const ProfileModal = () => {
     return (
         <>
             <ul className='rounded-sm py-2 '>
-                <Link to="/login">
+                <Link to="/auth/login">
 
                     <li className='py-2 px-4'>
                         Log In
                     </li>
                 </Link>
-                <Link to="/signup">
+                <Link to="/auth/signup">
                 
                     <li className='py-2 px-4'>
                         Sign Up
