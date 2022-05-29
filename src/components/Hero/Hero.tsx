@@ -11,18 +11,18 @@ const Hero = () => {
         const vid = document.getElementById("video") as HTMLVideoElement
 
         if (w.matches) {
-            // vid.pause();
+            vid.pause();
             // source.removeAttribute("src");
             // source.setAttribute("src", "https://storage.googleapis.com/coverr-main/mp4/Love-Boat.mp4");
             vid.setAttribute("src", "https://ik.imagekit.io/haybececodes/mobile-hero-video_720x1280_2kqek7_j4.mp4?ik-sdk-version=javascript-1.4.3&updatedAt=1652387652871");
-            // vid.load();
-            // vid.play();
+             vid.load();
+            vid.play();
         } else {
-            // vid.pause();
+             vid.pause();
             // source.removeAttribute("src");
             vid.setAttribute("src", "https://ik.imagekit.io/haybececodes/desktop-hero-video_854x480_bpPIjPIB9.mp4?ik-sdk-version=javascript-1.4.3&updatedAt=1652387638028");
-            // vid.load();
-            // vid.play();
+             vid.load();
+             vid.play();
         }
     }, [])
     return (
