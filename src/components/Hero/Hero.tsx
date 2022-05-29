@@ -46,7 +46,7 @@ const Hero = () => {
         <div className='md:flex-grow flex-shrink-0 bg-green-600 relative overflow-hidden '>
             <div className='w-full md:aspect-video lg:absolute top-0 left-0 right-0 bottom-0 h-full md:object-contain lg:-translate-y-1/4 hidden md:block'>
                 {/* <img src={Mobile} className="" /> */}
-                <video src={Mobile} muted={false} autoPlay={true} preload="auto" className='video w-full' playsInline />
+                <video src={Mobile} autoPlay muted loop className='video w-full' playsInline />
 
 
             </div>
