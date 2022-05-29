@@ -1,35 +1,42 @@
 import React, { useState } from 'react'
 
 import Button from '../../../components/Button'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Input from '../../../components/Input'
 
+import { useLoginMutation } from '../../../app/services/auth'
+import { setCredentials } from '../authSlice'
 
 import { ReactComponent as Email } from '../../../assets/svgs/email.svg'
 import { ReactComponent as Eyes } from '../../../assets/svgs/eyes.svg'
 
 import { fieldValidator } from "./validator"
+import { useDispatch } from "react-redux"
+
 
 
 interface IInfo {
 
-  email: string,
+username: string,
   password: string
 }
 
 const INFO = {
 
-  email: '',
+  username: '',
   password: ''
 }
 
 
 
 const Login = () => {
-
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const [login, { isLoading }] = useLoginMutation()
+  const [badInput,setBadInput] = useState<boolean>(false)
   const [info, setInfo] = useState<IInfo>(INFO)
-  //if error object properties is an empty string , then there is no error in input
   const [error, setError] = useState<IInfo>(INFO)
+  //if error object properties is an empty string , then there is no error in input
 
   const handleChange = (e: React.FormEvent) => {
 
@@ -39,8 +46,36 @@ const Login = () => {
 
   }
 
-  // console.log(error)
-  // console.log(info)
+  // const handleSubmit = 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+const {username,password} = info
+    const formState = {
+      username,
+      password
+    }
+    // console.log(formState)
+    try {
+      // console.log(formState)
+      const user = await login(formState).unwrap()
+      // console.log(user)
+      dispatch(setCredentials(user))
+      localStorage.setItem("token" , user?.token)
+      //  console.log(user)
+       navigate('/')
+
+    } catch (err: any) {
+      if(err.status == 400){
+        setBadInput(true)
+      }else console.log(err)
+      // if()
+  
+    }
+
+    // const login = async () => {
+
+  }
+
 
 
 
@@ -50,7 +85,7 @@ const Login = () => {
         <h1 className='text-3xl font-bold leading-none mb-1'>Good to see you again.</h1>
         <p className='text-xs text-primary-100 leading-none'>Please login to your account</p>
       </div>
-      <form action="" className='mx-auto w-11/12 md:w-9/12 flex flex-col items-stretch gap-3'>
+      <form  className='mx-auto w-11/12 md:w-9/12 flex flex-col items-stretch gap-3' onSubmit={handleSubmit}>
         {/* <div> */}
         {/* <label htmlFor="first_name text-xs text-left">
           <p className='text-left text-xs'>First Name</p>
@@ -73,20 +108,24 @@ const Login = () => {
       </div> */}
         {/* <div className=' bg-green-400 flex jus'> */}
 
-        <Input label='Email' labelFor='email' placeholder='JohnDoe@gmail.com' type='text' value={info.email} handleChange={handleChange} >
-          <Email />
+        <Input label='Username' labelFor='username' placeholder='Doe426' type='text' value={info.username} handleChange={handleChange} >
+          {/* <Email /> */}
         </Input>
         {/* </div> */}
         <Input label='Password' labelFor='password' placeholder='********' type='password' value={info.password} handleChange={handleChange} >
 
           <Eyes />
         </Input>
-        {/* </div> */}
-        {/* </div> */}
+
         <div className='mt-3'>
           <Button>
-            Log In
+            {isLoading ? "...Loggin In" : "Log In"}
           </Button>
+          {
+          badInput 
+          &&
+          <p className='text-[#DA3B39]'>:&#40; Seems something is wrong with entered details!</p>
+           }
           <p className='text-xs mt-1 font-light text-primary-100'>Do not have an account?
             <Link to="/auth/signup">
               <span className='underline text-primary-800'> Sign Up</span>

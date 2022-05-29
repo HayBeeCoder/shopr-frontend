@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { url } from 'inspector'
 import { RootState } from '../store'
 
 interface responseA{
@@ -33,7 +34,7 @@ export const api = createApi({
     baseUrl: 'https://shopr-server-main.herokuapp.com/api/',
     prepareHeaders: (headers, { getState }) => {
       // By default, if we have a token in the store, let's use that for authenticated requests
-      const token = (getState() as RootState).auth.token
+      const token = (getState() as RootState).auth.token  || localStorage.getItem("token")
       if (token) {
         headers.set('authorization', `Bearer ${token}`)
       }
@@ -44,7 +45,7 @@ export const api = createApi({
     
     login: builder.mutation<UserResponse, LoginRequest>({
       query: (credentials) => ({
-        url: 'login',
+        url: 'auth/signin',
         method: 'POST',
         body: credentials,
       }),
@@ -60,6 +61,12 @@ export const api = createApi({
         body: credentials
       })
   }),
+  signout: builder.query<{message?:string} , void>({
+    query: () =>({
+      url: "auth/signout",
+      method: "GET"
+    })
+  })
     // "api/user/all": builder.
   }),
 })

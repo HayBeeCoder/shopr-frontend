@@ -13,15 +13,18 @@ import { useDispatch } from "react-redux"
 import { useSignupMutation } from "../../app/services/auth"
 
 interface IInfo {
-  first_name: string,
-  last_name: string,
+  // first_name: string,
+  // last_name: string,
+  username: string,
   email: string,
   password: string
+  
 }
 
 const INFO = {
-  first_name: '',
-  last_name: '',
+  // first_name: '',
+  // last_name: '',
+  username: '',
   email: '',
   password: ''
 }
@@ -41,7 +44,7 @@ const SignUp = () => {
   const [successfulSignUp, setsucessfulSignUp] = useState(false)
   //if error object properties is an empty string , then there is no error in input
   const [error, setError] = useState<IInfo>(INFO)
-
+  console.log(info)
   const handleChange = (e: React.FormEvent) => {
 
     let { name, value } = e.target as HTMLInputElement
@@ -52,11 +55,11 @@ const SignUp = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-
+    const {username , email,password} = info
     const formState = {
-      username: info.first_name + ' ' + info.last_name,
-      email: info.email,
-      password: info.password
+      username,
+      email,
+      password
     }
 
 
@@ -67,7 +70,7 @@ const SignUp = () => {
       if (user.message) {
         // document.body.append(user.message)
         setsucessfulSignUp(true)
-
+console.log(user.message)
 
         setUserExists(false)
       } else if (user?.err) {
@@ -78,10 +81,10 @@ const SignUp = () => {
 
 
       // dispatch(setCredentials(user))
-      console.log(user)
+      // console.log(user)
       // push('/')
     } catch (err) {
-      console.log("error: ", err)
+       console.log("error: ", err)
       // toast({
       //   status: 'error',
       //   title: 'Error',
@@ -108,7 +111,7 @@ const SignUp = () => {
           <p className='text-xs text-primary-100 leading-none'>Complete your sign up and start shopping</p>
         </div>
       }
-      <form action="" className='mx-auto w-11/12 md:w-9/12 flex flex-col items-stretch gap-3' onSubmit={handleSubmit}>
+      <form className='mx-auto w-11/12 md:w-9/12 flex flex-col items-stretch gap-3' onSubmit={handleSubmit}>
         {
           successfulSignUp ?
             <div>
@@ -121,12 +124,14 @@ const SignUp = () => {
             </div>
             :
             <>
-              <div className='flex flex-col gap-3 md:flex-row md:gap-4 w-full '>
-                <Input label='First Name' labelFor='first_name' placeholder='John' type='text' value={info.first_name} handleChange={handleChange} />
-                <Input label='Last Name' labelFor='last_name' placeholder='Doe' type='text' value={info.last_name} handleChange={handleChange} />
+              {/* <div className='flex flex-col gap-3 md:flex-row md:gap-4 w-full '> */}
+                {/* <Input label='First Name' labelFor='first_name' placeholder='John' type='text' value={info.first_name} handleChange={handleChange} /> */}
+                {/* <Input label='Last Name' labelFor='last_name' placeholder='Doe' type='text' value={info.last_name} handleChange={handleChange} /> */}
 
-              </div>
-              {/* <div className=' bg-green-400 flex jus'> */}
+              {/* </div> */}
+                <Input label='Username' labelFor='username' placeholder='Doe426' type='text' value={info.username} handleChange={handleChange} />
+
+              {/* <dniv className=' bg-green-400 flex jus'> */}
 
               <Input label='Email' labelFor='email' placeholder='JohnDoe@gmail.com' type='text' value={info.email} handleChange={handleChange} >
                 <Email />

@@ -1,15 +1,15 @@
 /* Helper functions used exlusively by 
 the files in this directory */
 interface Error {
-    first_name: string,
-  last_name: string,
+    // first_name: string,
+  username: string,
   email: string,
   password: string
   }
   
   interface Account {
-    first_name: string,
-  last_name: string,
+    username: string,
+  // last_name: string,
   email: string,
   password: string
   }
