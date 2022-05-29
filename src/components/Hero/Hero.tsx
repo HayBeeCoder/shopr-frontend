@@ -26,7 +26,7 @@ const Hero = () => {
         }
     }, [])
     return (
-        <div className='flex-grow  flex-shrink-0 bg-secondary-600 relative overflow-hidden '>
+        <div className='md:flex-grow flex-shrink-0 bg-green-600 relative overflow-hidden '>
             <div className='w-full md:aspect-video lg:absolute top-0 left-0 right-0 bottom-0 h-full md:object-contain lg:-translate-y-1/4'>
                 <video id="video" autoPlay={true} preload="auto" src="https://ik.imagekit.io/haybececodes/mobile-hero-video_720x1280_2kqek7_j4.mp4?ik-sdk-version=javascript-1.4.3&updatedAt=1652387652871" loop className='w-full '></video>
             </div>
@@ -37,8 +37,8 @@ const Hero = () => {
                 <div className='absolute top-1/2 left-1/2 -translate-x-1/2 text-white -translate-y-1/2 z-[950] w-full text-center'>
                     <h1 className='font-extrabold text-3xl md:text-6xl lg:text-7xl'>Your body deserves better</h1>
                     <p className='font-light text-xs lg:text-sm '> Let's go get what you deserve , Dear.</p>
-                     <div className='inline-block mt-4 lg:mt-10'> 
-                        <Button classname='inline-block px-10'>
+                     <div className='inline-block mt-3 lg:mt-10'> 
+                        <Button classname='inline-block px-16'>
                             Start Shopping
                         </Button>
                      </div> 
