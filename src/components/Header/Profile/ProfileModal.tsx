@@ -17,7 +17,7 @@ const ProfileModal: React.FC<Props> = ({ userLoggedIn }) => {
     }
     return (
         <>
-            <ul className='rounded-sm py-2 '>
+            <ul className='rounded-sm py-2 bg-white'>
                 {
                     userLoggedIn
                         ?

@@ -40,7 +40,7 @@ const Header: React.FC<Props> = ({ }) => {
      // console.log(menuOpen)
      return (
           <>
-               <header className="flex justify-between px-[12px] lg:px-[28px] relative py-[13px] md:py-[30px] items-center z-[1000] flex-grow-0 h-max flex-shrink">
+               <header className="flex justify-between px-[12px] lg:px-[28px] relative py-[13px] md:pt-[15px] items-center z-[1000] flex-grow-0 h-max flex-shrink">
 
 
                     {/* both div and Siidebar below will be controlled by hamburger state  */}
