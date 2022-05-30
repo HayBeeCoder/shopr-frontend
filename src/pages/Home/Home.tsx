@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from '../../components/Header'
 import Hero from '../../components/Hero'
+import Perks from '../../Perks'
 
 const Home = () => {
   return (
@@ -10,8 +11,8 @@ const Home = () => {
       <Hero/>
     </div>
 <main>
-    <div className='bg-purple-500'>
-      Main
+    <div className=''>
+      <Perks/>
     </div>
 </main>
     
