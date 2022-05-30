@@ -3,11 +3,12 @@ import { Route } from "react-router-dom"
 
 // pages 
 import Home from "./pages/Home"
-import Product from "./pages/Home/Product"
+import Product from "./pages/Product"
 import CartModal from "./components/Header/Cart/CartModal"
 import LogIn from "./features/auth/Login/Login"
 import SignUp from "./features/auth/SignUp"
 import Layout from "./features/auth/Layout"
+import { Component } from "react"
 
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
     <Routes  location={state?.backgroundLocation || location}>
       <Route path="/" element= {<Home/>}>
         <Route index element={<Home/>}/>
-        <Route path="collections" >
+        <Route path="collections" element={<Component/>} >
            <Route path=":user"  element={<Product/>}/>
         </Route>
       </Route>

@@ -1,7 +1,8 @@
 import React from 'react'
+import Collections from '../../components/Collections'
 import Header from '../../components/Header'
 import Hero from '../../components/Hero'
-import Perks from '../../Perks'
+import Perks from '../../components/Perks'
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
 <main>
     <div className=''>
       <Perks/>
+      <Collections/>
     </div>
 </main>
     
