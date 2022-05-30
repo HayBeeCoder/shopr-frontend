@@ -10,7 +10,7 @@ import Collection from './Collection'
 
 const Collections = () => {
     return (
-        <SectionLayout>
+        <SectionLayout className="bg-[#FCFBF4]">
             <h2 className='text-4xl md:text-5xl font-bold text-center'>Our <span className='text-secondary-600 inline-block'>Collections</span></h2>
             <div className='w-full mx-auto space-y-9 md:space-y-0 max-w-md md:max-w-none  md:grid grid-cols-3 gap-3 py-10'>
                 <Collection forWho='Men' linkTo='/collections/men' src={Man} />

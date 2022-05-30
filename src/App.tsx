@@ -8,7 +8,9 @@ import CartModal from "./components/Header/Cart/CartModal"
 import LogIn from "./features/auth/Login/Login"
 import SignUp from "./features/auth/SignUp"
 import Layout from "./features/auth/Layout"
-import { Component } from "react"
+// import { Component } from "react"
+import Component from "./pages/Component"
+import PageLayout from "./layouts/PageLayout"
 
 
 function App() {
@@ -21,8 +23,9 @@ function App() {
    <div>
 
     <Routes  location={state?.backgroundLocation || location}>
-      <Route path="/" element= {<Home/>}>
-        <Route index element={<Home/>}/>
+      <Route path="/" element= {<Home/>}/>
+      <Route path="/" element= {<PageLayout/>}>
+        {/* <Route index element={<Home/>}/> */}
         <Route path="collections" element={<Component/>} >
            <Route path=":user"  element={<Product/>}/>
         </Route>

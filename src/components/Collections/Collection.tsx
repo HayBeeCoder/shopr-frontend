@@ -11,7 +11,7 @@ interface Props {
 const Collection: React.FC<Props> = ({ src, linkTo, children, forWho }) => {
     return (
         <div className=''>
-            <div className=' w-full'>
+            <div className=' w-full bg-secondary-100'>
 
                 <img src={src} alt="man" width="433" height="244" className='w-full h-auto' />
             </div>
