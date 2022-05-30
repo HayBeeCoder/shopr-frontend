@@ -8,7 +8,7 @@ interface Props {
 
 const Perk: React.FC<Props> = ({ heading, description, children }) => {
     return (
-        <div className='text-primary-800'>
+        <div className='text-primary-800 text-center'>
             {/* <div className='bg-orange-400 inline-block '> */}
 
             <span className='p-6 md:p-4 bg-secondary-100  inline-block text-[32px] md:text-[48px] rounded-full'>
