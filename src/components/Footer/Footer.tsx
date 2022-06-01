@@ -48,13 +48,13 @@ const Footer = () => {
 
           </Accordion>
           <Accordion title="Collections" >
-            <FooterLink to='/'>
+            <FooterLink to='/collections/men'>
               Men
             </FooterLink>
-            <FooterLink to='/'>
+            <FooterLink to='/collections/women'>
               Women
             </FooterLink>
-            <FooterLink to='/'>
+            <FooterLink to='/collections/unisex'>
               Unisex
             </FooterLink>
           </Accordion>

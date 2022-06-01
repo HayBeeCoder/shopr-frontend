@@ -4,6 +4,7 @@ import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Hero from '../../components/Hero'
 import Perks from '../../components/Perks'
+import Testimonials from '../../components/Testimonials'
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
         <div className=''>
           <Perks />
           <Collections />
+          <Testimonials/>
         </div>
       </main>
 
