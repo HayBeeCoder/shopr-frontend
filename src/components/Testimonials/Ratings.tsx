@@ -6,11 +6,13 @@ const ratings = [1,2,3,4,5]
 
 interface Props{
     rating: number
+    shouldShow: boolean
 }
 
-const Ratings:React.FC<Props> = ({rating}) => {
+const Ratings:React.FC<Props> = ({rating,shouldShow}) => {
+
   return (
-    <div className='inline-flex '>
+    <div className='inline-flex ' style={{display: `${shouldShow ? "inline-flex" : "none"}`}}>
         {
             ratings.map((r,index) => {
                 if(index < rating) return <SolidStar key={index}/>
