@@ -22,8 +22,8 @@ const NewProducts = () => {
                         {data?.data.slice(0, 4).map(product => {
                             return <NewProduct name={product.title} image={product.images[0][0]} />
                         })}
-                        <div className="col-span-2 lg:col-span-1 row-span-1 relative text-center flex items-center justify-center  pb-[50%] lg:pb-0">
-                            <h3 className='font-bold text-5xl absolute top-1/2 -translate-y-1/2 left-0 -translate-x-1/2'>
+                        <div className="col-span-2 lg:col-span-1 row-span-1 relative text-center flex items-center justify-center  ">
+                            <h3 className='font-bold text-5xl py-50 lg:pb-0'>
                                 <p className='text-secondary-500'>
                                     NEW
                                 </p>
