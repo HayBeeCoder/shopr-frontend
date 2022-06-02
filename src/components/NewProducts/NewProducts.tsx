@@ -23,7 +23,7 @@ const NewProducts = () => {
                             return <NewProduct name={product.title} image={product.images[0][0]} />
                         })}
                         <div className="col-span-2 lg:col-span-1 row-span-1 relative text-center flex items-center justify-center  ">
-                            <h3 className='font-bold text-5xl py-50 lg:pb-0'>
+                            <h3 className='font-bold text-5xl py-50 lg:py-0'>
                                 <p className='text-secondary-500'>
                                     NEW
                                 </p>
