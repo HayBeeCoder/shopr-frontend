@@ -10,7 +10,7 @@ import { ReactComponent as Email } from '../../assets/svgs/email.svg'
 import { ReactComponent as Eyes } from '../../assets/svgs/eyes.svg'
 
 import { useDispatch } from "react-redux"
-import { useSignupMutation } from "../../app/services/auth"
+import { useSignupMutation } from "../../app/services/api"
 
 interface IInfo {
   // first_name: string,
@@ -44,7 +44,7 @@ const SignUp = () => {
   const [successfulSignUp, setsucessfulSignUp] = useState(false)
   //if error object properties is an empty string , then there is no error in input
   const [error, setError] = useState<IInfo>(INFO)
-  console.log(info)
+  // console.log(info)
   const handleChange = (e: React.FormEvent) => {
 
     let { name, value } = e.target as HTMLInputElement
@@ -70,7 +70,7 @@ const SignUp = () => {
       if (user.message) {
         // document.body.append(user.message)
         setsucessfulSignUp(true)
-console.log(user.message)
+// console.log(user.message)
 
         setUserExists(false)
       } else if (user?.err) {

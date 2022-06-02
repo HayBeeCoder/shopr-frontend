@@ -2,10 +2,24 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { url } from 'inspector'
 import { RootState } from '../store'
 
-interface responseA{
+interface NewProductsHome {
+  title: string,
+  description: string,
+  images: string[][],
+  size: [{
+    size: string,
+    quantity: number
+  }],
+  category: Array<string>,
+  color: Array<string>,
+  price: number,
+
+
+}
+interface responseA {
   message: string
 }
-interface responseB{
+interface responseB {
   err: string
 }
 export interface User {
@@ -34,7 +48,7 @@ export const api = createApi({
     baseUrl: 'https://shopr-server-main.herokuapp.com/api/',
     prepareHeaders: (headers, { getState }) => {
       // By default, if we have a token in the store, let's use that for authenticated requests
-      const token = (getState() as RootState).auth.token  || localStorage.getItem("token")
+      const token = (getState() as RootState).auth.token || localStorage.getItem("token")
       if (token) {
         headers.set('authorization', `Bearer ${token}`)
       }
@@ -42,7 +56,7 @@ export const api = createApi({
     },
   }),
   endpoints: (builder) => ({
-    
+
     login: builder.mutation<UserResponse, LoginRequest>({
       query: (credentials) => ({
         url: 'auth/signin',
@@ -50,25 +64,33 @@ export const api = createApi({
         body: credentials,
       }),
     }),
-   
+
     protected: builder.mutation<{ message: string }, void>({
       query: () => 'protected',
     }),
-    signup: builder.mutation<{message ?: string, err ?: string}, SignUpRequest>({
+    signup: builder.mutation<{ message?: string, err?: string }, SignUpRequest>({
       query: (credentials) => ({
         url: '/users/',
         method: 'POST',
         body: credentials
       })
-  }),
-  signout: builder.query<{message?:string} , void>({
-    query: () =>({
-      url: "auth/signout",
-      method: "GET"
-    })
-  })
+    }),
+    signout: builder.query<{ message?: string }, void>({
+      query: () => ({
+        url: "auth/signout",
+        method: "GET"
+      })
+    }),
+
     // "api/user/all": builder.
+    NewProductsHome: builder.query<{ data: Array<NewProductsHome> },void>({
+      query: () => ({
+        url: "product/all?new=true",
+        method: "GET"
+
+      })
+    })
   }),
 })
 
-export const { useLoginMutation, useProtectedMutation, useSignupMutation } = api
+export const { useLoginMutation, useProtectedMutation, useSignupMutation , useNewProductsHomeQuery } = api

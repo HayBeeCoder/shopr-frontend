@@ -4,7 +4,7 @@ import Button from '../../../components/Button'
 import { Link, useNavigate } from 'react-router-dom'
 import Input from '../../../components/Input'
 
-import { useLoginMutation } from '../../../app/services/auth'
+import { useLoginMutation } from '../../../app/services/api'
 import { setCredentials } from '../authSlice'
 
 import { ReactComponent as Email } from '../../../assets/svgs/email.svg'
