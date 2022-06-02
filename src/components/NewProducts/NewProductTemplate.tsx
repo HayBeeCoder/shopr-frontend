@@ -3,7 +3,7 @@ import React from 'react'
 
 const NewProduct = () => {
   return (
-    <div className="bg-green-200 pb-[100%]">hi</div>
+    <div className="bg-secondary-500 pb-[100%]"></div>
   )
 }
 

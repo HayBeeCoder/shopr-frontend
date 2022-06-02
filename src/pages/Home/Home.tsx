@@ -15,6 +15,7 @@ const Home = () => {
         <Hero />
       </div>
       <main>
+        
         <div className=''>
           <Perks />
           <Collections />
