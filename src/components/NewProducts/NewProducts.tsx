@@ -11,7 +11,7 @@ const NewProducts = () => {
 console.log(error)
     return (
         <SectionLayout>
-            <div className='-mx-[12px] px-[12px] lg:px-20 lg:-mx-[28px] grid grid-cols-2 lg:grid-cols-3 gap-4 py-36 -my-20 bg-gradient-to-b from-[#382e39]/30 via-[#382e39]/20 to-[#382e39]/30'>
+            <div className='-mx-[12px] px-[12px] lg:px-20 lg:-mx-[28px] grid grid-cols-2 lg:grid-cols-3 gap-4 py-36 -my-20 bg-gradient-to-b from-[#382e39]/20 via-[#382e39]/30 to-[#382e39]/20'>
 
                 {isLoading ?
                     [1, 2, 3, 4, 5, 6, 7, 8, 9].map((product, index) => {
