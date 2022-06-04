@@ -5,11 +5,11 @@ import Footer from '../components/Footer'
 
 const PageLayout = () => {
   return (
-    <>
+    <div className='flex flex-col'>
       <Header/>
       <Outlet/>
-      <Footer/>
-    </>
+      <Footer />
+    </div>
   )
 }
 

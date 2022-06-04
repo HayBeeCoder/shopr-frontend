@@ -11,4 +11,12 @@
  img{
     aspect-ratio: attr(width)/attr(height)
  }
+ .remove-scrollbar{
+   -ms-overflow-style: none;  /* IE and Edge */
+   scrollbar-width: none;  /* Firefox */
+ }
+
+ .remove-scrollbar::-webkit-scrollbar {
+   display: none;
+ }
 }

@@ -3,7 +3,7 @@ import { Route } from "react-router-dom"
 
 // pages 
 import Home from "./pages/Home"
-import Product from "./pages/Product"
+import Products from "./pages/Products"
 import CartModal from "./components/Header/Cart/CartModal"
 import LogIn from "./features/auth/Login/Login"
 import SignUp from "./features/auth/SignUp"
@@ -27,7 +27,7 @@ function App() {
       <Route path="/" element= {<PageLayout/>}>
         {/* <Route index element={<Home/>}/> */}
         <Route path="collections" element={<Component/>} >
-           <Route path=":user"  element={<Product/>}/>
+           <Route path=":category"  element={<Products/>}/>
         </Route>
       </Route>
       <Route path="/auth" element={<Layout/>}>

@@ -8,7 +8,7 @@ import FooterLink from './FooterLink'
 
 const Footer = () => {
   return (
-    <footer>
+    <footer >
       <SectionLayout className='bg-secondary-100 flex-row-reverse space-y-7 lg:space-y-0  text-primary-800 md:flex justify-start gap-20 items-start'>
         
         <div className='max-w-[400px] mx-auto'>
