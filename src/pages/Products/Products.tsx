@@ -69,7 +69,7 @@ const Products = () => {
       <h2 className='font-light text-2xl text-center my-1'>  {category && category?.slice(0, 1).toUpperCase() + category?.slice(1)}’s clothing & apparel</h2>
       {/* Products CATEGORY : {category} */}
       {/* ========================== */}
-      <div className='flex  scroll-smooth snap-center  md:grid grid-cols-5 my-10 gap-2 md:gap-3 remove-scrollbar'>
+      <div className='flex  scroll-smooth snap-center  md:grid grid-cols-5 my-10 gap-2 md:gap-3 remove-scrollbar overflow-x-scroll' >
 
         {
           collections.map((collection, index) => (
@@ -93,7 +93,7 @@ const Products = () => {
       </div>
 
 
-      <div className='w-screen grid grid-cols-2 md:grid-cols-4 gap-3 my-14'>
+      <div className=' grid grid-cols-2 md:grid-cols-4 gap-3 my-14  overflow-x-hidden'>
         {
           isLoading ?
           TEMPLATE.map(template => 
