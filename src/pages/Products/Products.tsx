@@ -93,7 +93,7 @@ const Products = () => {
       </div>
 
 
-      <div className='grid gid-cols-2 md:grid-cols-4 gap-3 my-14'>
+      <div className='w-screen grid grid-cols-2 md:grid-cols-4 gap-3 my-14'>
         {
           isLoading ?
           TEMPLATE.map(template => 
