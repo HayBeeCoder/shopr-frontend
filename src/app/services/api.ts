@@ -89,8 +89,21 @@ export const api = createApi({
         method: "GET"
 
       })
-    })
+    }),
+
+    getProducts: builder.query<{data: Array<NewProductsHome>} , string>({
+      query: (category) => ({
+         url: `product/all?category=${category}` ,
+        method: "GET"
+        }),
+      // Pick out data and prevent nested properties in a hook or selector
+    
+    // transformResponse: (response: { data: Array<NewProductsHome> }, meta, arg) => response.data,
+
+    }
+
+    )
   }),
 })
 
-export const { useLoginMutation, useProtectedMutation, useSignupMutation , useNewProductsHomeQuery } = api
+export const { useGetProductsQuery, useLoginMutation, useProtectedMutation, useSignupMutation , useNewProductsHomeQuery } = api
