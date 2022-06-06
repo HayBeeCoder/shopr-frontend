@@ -6,6 +6,7 @@ import { MenCollections, WomenCollections } from "./Product_Collections"
 
 import { useGetProductsQuery } from '../../app/services/api'
 import { NewProductsHome } from "../../../types"
+import Product from './Product'
 
 const TEMPLATE = [1,2,3,4,5,6,7,8,9,10]
 
@@ -19,7 +20,7 @@ const Products = () => {
   //the condition used in below expression becomes buggy , if category becomes non-binary
   // console.log(collections)
   const { data, error, isLoading } = useGetProductsQuery(category as string)
-  console.log(category)
+  // console.log(category)
 
   useEffect(() => {
     if (!isLoading) {
@@ -51,7 +52,7 @@ const Products = () => {
 
   // },[category])
 
-  console.log(data)
+  // console.log(data)
 
 
   return (
@@ -69,7 +70,7 @@ const Products = () => {
       <h2 className='font-light text-2xl text-center my-1'>  {category && category?.slice(0, 1).toUpperCase() + category?.slice(1)}’s clothing & apparel</h2>
       {/* Products CATEGORY : {category} */}
       {/* ========================== */}
-      <div className='flex  scroll-smooth snap-center  md:grid grid-cols-5 my-10 gap-2 md:gap-3 remove-scrollbar overflow-x-scroll' >
+      <div className='flex  scroll-smooth snap-center   md:grid grid-cols-5 my-10 gap-2 md:gap-3 remove-scrollbar overflow-x-scroll' >
 
         {
           collections.map((collection, index) => (
@@ -93,7 +94,7 @@ const Products = () => {
       </div>
 
 
-      <div className=' grid grid-cols-2 md:grid-cols-4 gap-3 my-14  overflow-x-hidden'>
+      <div className=' grid grid-cols-2 gap-y-8  md:grid-cols-4 gap-2 md:gap-8 my-14  overflow-x-hidden'>
         {
           isLoading ?
           TEMPLATE.map(template => 
@@ -104,19 +105,8 @@ const Products = () => {
            )):
            (
              productsToDisplay?.map((item,arr) => (
-               <div className=''>
-                 <div className='w-full pb-[100%]  relative group pointer-events-auto'>
-
-                  <img src={item.images[0][0]} alt={item.title} width="300" height="300" className='absolute w-full h-full group-hover:-z-20 pointer-events-none'/> 
-                 {/* <img src={item.images[0][2]} alt={item.title} width="300" height="300" className='absolute z-10 left-0 top-0  w-full h-full'/> */}
-                 </div>
-                 
-                 <div>
-                 <p className='text-xs my-2'>{item.title}</p>
-                 <p className=''>{item.price}</p>
-
-                 </div>
-               </div>
+               <Product item={item}/>
+            
              ))
            )
 

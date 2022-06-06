@@ -1,8 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { url } from 'inspector'
+import NewProducts from '../../components/NewProducts'
 import { RootState } from '../store'
 
 interface NewProductsHome {
+  _id: string,
   title: string,
   description: string,
   images: string[][],
@@ -102,8 +104,15 @@ export const api = createApi({
 
     }
 
-    )
+    ),
+    getProduct: builder.query<{data: NewProductsHome} , string>({
+      query: (id) => ({
+        url:`product/${id}`,
+        method: "GET"
+
+      })
+    })
   }),
 })
 
-export const { useGetProductsQuery, useLoginMutation, useProtectedMutation, useSignupMutation , useNewProductsHomeQuery } = api
+export const {useGetProductQuery, useGetProductsQuery, useLoginMutation, useProtectedMutation, useSignupMutation , useNewProductsHomeQuery } = api

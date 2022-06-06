@@ -18,7 +18,7 @@ const NavItem: React.FC<Props> = ({ user }) => {
                 isActive ? activeClassName : ""
             }
         >
-            <li className='lg:text-[18px] font-normal underline-offset-4 hover:underline no-underline text-3xl ' >
+            <li className='sm:text-[18px] font-normal underline-offset-4 hover:underline no-underline text-3xl ' >
 
 
 

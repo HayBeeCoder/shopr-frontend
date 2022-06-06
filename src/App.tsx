@@ -11,6 +11,7 @@ import Layout from "./features/auth/Layout"
 // import { Component } from "react"
 import Component from "./pages/Component"
 import PageLayout from "./layouts/PageLayout"
+import Product from "./pages/Product"
 
 
 function App() {
@@ -27,9 +28,12 @@ function App() {
       <Route path="/" element= {<PageLayout/>}>
         {/* <Route index element={<Home/>}/> */}
         <Route path="collections" element={<Component/>} >
+           <Route path=":category/:id"  element={<Product/>}/>
            <Route path=":category"  element={<Products/>}/>
         </Route>
       </Route>
+           <Route  path="/product/:id" element={<Product/>}/>
+      <Route path="//collections"/>
       <Route path="/auth" element={<Layout/>}>
         <Route path="login" element= {<LogIn/>}/>
         <Route path="signup" element= {<SignUp/>}/>
