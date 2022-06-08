@@ -48,7 +48,7 @@ const ProductSideBar = ({ name, size, color, quantity ,id , image}: Props) => {
 
                         </p>
                     </div>
-                    <button className='text-[28px] bg-green-300' onClick={() => dispatch(remove(id))}>
+                    <button className='text-[28px]' onClick={() => dispatch(remove(id))}>
 
                         <Bin />
                     </button>

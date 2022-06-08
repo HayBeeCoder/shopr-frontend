@@ -70,9 +70,7 @@ export const cartSlice = createSlice({
         },
 
         remove: (state, action: PayloadAction<string>) => {
-            // const { id } = action.payload
-            console.log("remove it")
-            console.log(action.payload)
+            // const { id } = action.payloa
             state = state.filter((item) => item.product._id != action.payload)
             localStorage.setItem("cart", JSON.stringify(state))
             return state
