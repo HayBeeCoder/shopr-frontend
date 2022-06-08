@@ -41,6 +41,7 @@ const CartModal = () => {
           key={product.product._id}
         //   images property is a multidimensional array
           image={product.product.images[0][0]}
+          price={product.product.price}
           
           />
       ))
