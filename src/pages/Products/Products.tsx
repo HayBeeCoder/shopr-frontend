@@ -5,13 +5,13 @@ import Products_Category from '../../components/Products_Category'
 import { MenCollections, WomenCollections } from "./Product_Collections"
 
 import { useGetProductsQuery } from '../../app/services/api'
-import { NewProductsHome } from "../../../types"
+import { IProduct  } from "../../../types"
 import Product from './Product'
 
 const TEMPLATE = [1,2,3,4,5,6,7,8,9,10]
 
 const Products = () => {
-  const [productsToDisplay, setProductsToDisplay] = useState<NewProductsHome[]>()
+  const [productsToDisplay, setProductsToDisplay] = useState<IProduct[]>()
   const { category } = useParams()
   const collections = category == "women" ? WomenCollections : MenCollections
   let [collection, setSearchParams] = useSearchParams();

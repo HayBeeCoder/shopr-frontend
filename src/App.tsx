@@ -18,6 +18,7 @@ function App() {
   
   const location = useLocation()
   let state = location.state as { backgroundLocation?: Location };
+  console.log(state)
 
   
   return (

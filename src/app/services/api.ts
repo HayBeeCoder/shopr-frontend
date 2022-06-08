@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { url } from 'inspector'
 import NewProducts from '../../components/NewProducts'
 import { RootState } from '../store'
+import {IProduct} from "../../../types"
 
 interface NewProductsHome {
   _id: string,
@@ -105,7 +106,7 @@ export const api = createApi({
     }
 
     ),
-    getProduct: builder.query<{data: NewProductsHome} , string>({
+    getProduct: builder.query<{data: IProduct} , string>({
       query: (id) => ({
         url:`product/${id}`,
         method: "GET"

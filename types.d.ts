@@ -1,4 +1,4 @@
-export interface NewProductsHome {
+export interface IProduct {
   _id: string,
   title: string,
   description: string,

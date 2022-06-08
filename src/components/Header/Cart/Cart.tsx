@@ -4,6 +4,7 @@ import {ReactComponent as CartIcon } from "../../../assets/svgs/bag.svg"
 
 const Cart = () => {
     const location = useLocation()
+    console.log(location)
     return (
         <div>
 
