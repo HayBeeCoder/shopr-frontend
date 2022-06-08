@@ -14,9 +14,11 @@ interface Props {
     quantity: number,
     id: string
     image: string
+    price: number
+
 }
 
-const ProductSideBar = ({ name, size, color, quantity ,id , image}: Props) => {
+const ProductSideBar = ({ name, price, size, color, quantity ,id , image}: Props) => {
     const [count, setCount] = useState(quantity)
     const dispatch = useAppDispatch()
     
@@ -54,7 +56,8 @@ const ProductSideBar = ({ name, size, color, quantity ,id , image}: Props) => {
                     </button>
                 </div>
                 <div className='flex justify-between items-end '>
-                    <p className='text-[16x] leading-none  p-0 ' ><span className='leading-[0.7] inline-block '>₦</span>42140</p>
+                    <p className='text-[16x] leading-none  p-0 ' >
+                    {`$${price}`}</p>
                     <Counter count={count} handleClick={handleCounterClick} />
                 </div>
 
