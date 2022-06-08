@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom'
-import { NewProductsHome } from "../../../types"
+import { IProduct } from "../../../types"
 
 interface Props {
-    item: NewProductsHome
+    item: IProduct
 }
 
 const Product = ({ item }: Props) => {
