@@ -12,13 +12,15 @@ import Layout from "./features/auth/Layout"
 import Component from "./pages/Component"
 import PageLayout from "./layouts/PageLayout"
 import Product from "./pages/Product"
+import Checkout from "./components/Checkout"
+
 
 
 function App() {
   
   const location = useLocation()
   let state = location.state as { backgroundLocation?: Location };
-  console.log(state)
+  // console.log(state)
 
   
   return (
@@ -27,6 +29,7 @@ function App() {
     <Routes  location={state?.backgroundLocation || location}>
       <Route path="/" element= {<Home/>}/>
       <Route path="/" element= {<PageLayout/>}>
+        <Route path="checkout" element={<Checkout/>}/>
         {/* <Route index element={<Home/>}/> */}
         <Route path="collections" element={<Component/>} >
            <Route path=":category/:id"  element={<Product/>}/>

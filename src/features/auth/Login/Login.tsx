@@ -59,6 +59,7 @@ const {username,password} = info
       // console.log(formState)
       const user = await login(formState).unwrap()
       // console.log(user)
+      console.log(user)
       dispatch(setCredentials(user))
       localStorage.setItem("token" , user?.token)
       //  console.log(user)

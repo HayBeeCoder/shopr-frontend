@@ -2,22 +2,36 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { url } from 'inspector'
 import NewProducts from '../../components/NewProducts'
 import { RootState } from '../store'
-import {IProduct} from "../../../types"
+import { IProduct } from "../../../types"
 
-interface NewProductsHome {
-  _id: string,
-  title: string,
-  description: string,
-  images: string[][],
-  size: [{
-    size: string,
-    quantity: number
-  }],
-  category: Array<string>,
-  color: Array<string>,
+// interface NewProductsHome {
+//   _id: string,
+//   title: string,
+//   description: string,
+//   images: string[][],
+//   size: [{
+//     size: string,
+// //     quantity: number
+//   }],
+//   category: Array<string>,
+//   color: Array<string>,
+//   price: number,
+
+
+// }
+
+interface ICartItem {
+  productId: string,
+  image: string,
   price: number,
+  color: string,
+  size: string,
+  quantity: number
 
-
+}
+interface ICart {
+  userId: string
+  products: ICartItem[],
 }
 interface responseA {
   message: string
@@ -86,7 +100,7 @@ export const api = createApi({
     }),
 
     // "api/user/all": builder.
-    NewProductsHome: builder.query<{ data: Array<NewProductsHome> },void>({
+    NewProductsHome: builder.query<{ data: Array<IProduct> }, void>({
       query: () => ({
         url: "product/all?new=true",
         method: "GET"
@@ -94,26 +108,47 @@ export const api = createApi({
       })
     }),
 
-    getProducts: builder.query<{data: Array<NewProductsHome>} , string>({
+    getProducts: builder.query<{ data: Array<IProduct> }, string>({
       query: (category) => ({
-         url: `product/all?category=${category}` ,
+        url: `product/all?category=${category}`,
         method: "GET"
-        }),
+      }),
       // Pick out data and prevent nested properties in a hook or selector
-    
-    // transformResponse: (response: { data: Array<NewProductsHome> }, meta, arg) => response.data,
+
+      // transformResponse: (response: { data: Array<NewProductsHome> }, meta, arg) => response.data,
 
     }
 
     ),
-    getProduct: builder.query<{data: IProduct} , string>({
+    getProduct: builder.query<{ data: IProduct }, string>({
       query: (id) => ({
-        url:`product/${id}`,
+        url: `product/${id}`,
         method: "GET"
 
+      })
+    }),
+    postCart: builder.mutation<{ data: ICart }, ICart>({
+      query: (body) => ({
+        url: `cart/`,
+        method: "POST",
+        body: body
+      })
+    }),
+    getCart: builder.query<{message?: string,error?:string} , string>({
+      query: (id) => ({
+        url: `cart/${id}`,
+        method: "GET",
       })
     })
   }),
 })
 
-export const {useGetProductQuery, useGetProductsQuery, useLoginMutation, useProtectedMutation, useSignupMutation , useNewProductsHomeQuery } = api
+export const {
+  useGetProductQuery,
+  useGetProductsQuery,
+  useLoginMutation,
+  useProtectedMutation,
+  useSignupMutation,
+  useNewProductsHomeQuery,
+  usePostCartMutation ,
+useGetCartQuery} = api
