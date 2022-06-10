@@ -6,8 +6,6 @@ import Input from '../../../components/Input'
 
 import { useLoginMutation } from '../../../app/services/api'
 import { setCredentials } from '../authSlice'
-
-import { ReactComponent as Email } from '../../../assets/svgs/email.svg'
 import { ReactComponent as Eyes } from '../../../assets/svgs/eyes.svg'
 
 import { fieldValidator } from "./validator"
@@ -59,7 +57,7 @@ const {username,password} = info
       // console.log(formState)
       const user = await login(formState).unwrap()
       // console.log(user)
-      console.log(user)
+      // console.log(user)
       dispatch(setCredentials(user))
       localStorage.setItem("token" , user?.token)
       //  console.log(user)

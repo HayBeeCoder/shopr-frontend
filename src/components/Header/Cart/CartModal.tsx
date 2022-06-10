@@ -21,7 +21,7 @@ const CartModal = () => {
                             <Cart />
                         </span>
                         <p className='font-bold text-2xl inline-block leading-none'>
-                            Your Cart
+                            Your Cart ({cartProducts.reduce((previousValue, currentItem) => (currentItem.quantity + previousValue ), 0)})
                         </p>
                     </div>
 
