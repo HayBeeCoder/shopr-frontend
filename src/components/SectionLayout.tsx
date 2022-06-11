@@ -1,9 +1,9 @@
 
 import React, { Children } from 'react'
-interface Props { 
+interface Props {
     className?: string
 }
-const SectionLayout: React.FC<Props> = ({ children ,className}) => {
+const SectionLayout: React.FC<Props> = ({ children, className }) => {
     const classname = "py-20 relative px-[12px] lg:px-[28px] " + className
     return (
         <section className={classname}>

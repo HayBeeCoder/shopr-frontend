@@ -1,45 +1,113 @@
 import React, { useState } from 'react'
 import Input from '../Input'
 import SectionLayout from '../SectionLayout'
-
-
-import { ReactComponent as Email } from '../../assets/svgs/email.svg'
+import FirstSection from './FirstSection'
+import SecondSection from './SecondSection'
+import ThirdSection from './ThirdSection'
+import { useAppSelector } from '../../app/hooks'
+import ProductSideBar from '../ProductSideBar.tsx/ProductSideBar'
 import Button from '../Button'
+import { ReactComponent as ArrowDown } from "../../assets/svgs/arrowdown.svg"
+
+const tax = Math.floor(Math.random() * 10)
+const shipping_fee = 20
 
 const Checkout = () => {
+  const [open,setOpen] = useState(false)
+  const [done, setDone] = useState(false)
+  const cartProducts = useAppSelector(state => state.cart)
   const [email, setEmail] = useState('')
+  const totalProductsPrice = cartProducts.reduce((previousValue, currentItem) => (currentItem.quantity * currentItem?.product.price), 0)
+  const total = totalProductsPrice + tax + shipping_fee
+  // console.log(email)
+
+  // const handleEmailInput =(e: React.FormEvent) => {
+  //   setEmail()
+  // }
   return (
     // <div> Checkout</div>
-    <SectionLayout className=''>
-      <div>
-        <div className='flex gap-2 items-center'>
-          <div className=' font-bold text-2xl  leading-none border-2 justify-center text-center items-center w-[35px] h-[35px] rounded-full inline-flex border-secondary-500 text-secondary-500 '>
-            1
+    <SectionLayout className='md:flex justify-between flex-row-reverse py-0 md:py-3' >
+      <div className='md:w-1/3 py-4 md:py-6 border-t-2 md:border-0 border-t-primary-100'>
+        <div>
+
+          <p className='font-semibold text-xl flex leading-none justify-between items-center'>
+            <span>
+
+              Your Cart ({cartProducts.reduce((previousValue, currentItem) => (currentItem.quantity + previousValue), 0)})
+            </span>
+            <div className='flex gap-3 md:block items-center'>
+
+              <span className='font-medium'>{`$${total}`}</span>
+              <button className='p-4 md:hidden' onClick={() => setOpen(open => !open)}>
+                <ArrowDown />
+              </button>
+            </div>
+          </p>
+        </div>
+
+        <div className='hidden md:block' style={{display: `${open ? "block" : "none"}`}}>
+
+          <div className='w-full py-8 space-y-6'>
+            {
+              cartProducts.map(product => (
+                <ProductSideBar
+                  name={product.product.title}
+                  color={product.color}
+                  quantity={product.quantity}
+                  id={product.product._id}
+                  size={product.size as string}
+                  key={product.product._id}
+                  //   images property is a multidimensional array
+                  image={product.product.images[0][0]}
+                  price={product.product.price}
+
+                />
+              ))
+            }
+          </div>
+          <div className='mt-5 space-y-3 '>
+            <p className='flex justify-between '>
+              <span>Subtotal</span>
+              <span>
+                {
+                  `$${totalProductsPrice}`
+
+                }
+              </span>
+            </p>
+            <p className='flex justify-between'>
+              <span>Tax</span>
+              <span>${tax}</span>
+            </p>
+            <p className='flex justify-between'>
+              <span>Shipping</span>
+              <span>${shipping_fee}</span>
+            </p>
+            <p className='flex justify-between'>
+              <span className="font-bold">Total</span>
+              <span>${total}</span>
+            </p>
+
+            <div className='space-y-2 my-4'>
+
+              <Button classname='' disabled={!done}>
+                Place Order
+              </Button>
+              <p className='text-center font-light text-xs'>
+                Psst! get it now before it sells out.
+              </p>
+            </div>
           </div>
 
-
-          <h2 className='font-bold text-2xl'>
-            Enter your email
-          </h2>
-        </div>
-        <p className='pl-[43px] text-[10px] -mt-1 text-primary-100'>Already have an accout? <span className='underline text-primary-800'>Login</span></p>
-
-        <div className='pl-[43px] my-3 space-y-5'>
-          <Input
-            value={email}
-            labelFor="Email"
-            placeholder='JohnDoe@gmail.com'
-            type='text'
-            label=''
-            handleChange={(e) => setEmail('e')}
-          >
-            <Email />
-          </Input>
-          <Button>
-            Continue Shopping 
-          </Button>
         </div>
       </div>
+      <div className='space-y-7 md:w-3/5 '>
+
+        <FirstSection value={email} setEmail={setEmail} />
+        <SecondSection />
+        <ThirdSection />
+      </div>
+
     </SectionLayout>
   )
 }

@@ -8,7 +8,7 @@ interface Props {
 
 const Button: React.FC<Props> = ({children,classname = '' , disabled = false , onClick} ) => {
     return (
-        <button className={'text-white py-3 bg-secondary-600 w-full block font-bold rounded-lg disabled:opacity-50 ' + classname} disabled={disabled} onClick={onClick}>
+        <button className={'text-white py-3 bg-secondary-600 w-full block font-bold rounded-lg disabled:opacity-50 disabled:opacity-60 ' + classname} disabled={disabled} onClick={onClick}>
             {children}
         </button>
     )
