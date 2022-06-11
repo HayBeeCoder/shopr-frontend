@@ -13,7 +13,7 @@ const tax = Math.floor(Math.random() * 10)
 const shipping_fee = 20
 
 const Checkout = () => {
-  const [open,setOpen] = useState(false)
+  const [open, setOpen] = useState(false)
   const [done, setDone] = useState(false)
   const cartProducts = useAppSelector(state => state.cart)
   const [email, setEmail] = useState('')
@@ -26,7 +26,7 @@ const Checkout = () => {
   // }
   return (
     // <div> Checkout</div>
-    <SectionLayout className='md:flex justify-between flex-row-reverse py-0 md:py-3' >
+    <SectionLayout className='md:flex justify-between flex-row-reverse md:py-3' >
       <div className='md:w-1/3 py-4 md:py-6 border-t-2 md:border-0 border-t-primary-100'>
         <div>
 
@@ -45,7 +45,7 @@ const Checkout = () => {
           </p>
         </div>
 
-        <div className='hidden md:block' style={{display: `${open ? "block" : "none"}`}}>
+        <div className='hidden md:block' style={{ display: `${open ? "block" : "none"}` }}>
 
           <div className='w-full py-8 space-y-6'>
             {
