@@ -4,14 +4,22 @@ import SectionLayout from '../SectionLayout'
 import FirstSection from './FirstSection'
 import SecondSection from './SecondSection'
 import ThirdSection from './ThirdSection'
+import CheckoutForm from "./CheckOutForm"
 import { useAppSelector } from '../../app/hooks'
 import ProductSideBar from '../ProductSideBar.tsx/ProductSideBar'
 import Button from '../Button'
 import { ReactComponent as ArrowDown } from "../../assets/svgs/arrowdown.svg"
 import { usePostTotalMutation } from '../../app/services/api'
 
+import { Appearance, loadStripe } from '@stripe/stripe-js'
+import { Elements } from '@stripe/react-stripe-js'
+import { StripeElementsOptions } from '@stripe/stripe-js'
+// import { setCredentials } from '../../features/auth/authSlice'
+
 const tax = Math.floor(Math.random() * 10)
 const shipping_fee = 20
+
+const stripePromise = loadStripe('pk_test_51LAu75JVJ8U3GhGkLef2bRGnsgyzJSEbvS13F88rw2c18b1pi7R94tei5tx50vQjQVv2tpVY8ELhONt4W9V3o0cC005eUl1hXS')
 
 const Checkout = () => {
   const [postTotal, { isLoading }] = usePostTotalMutation()
@@ -19,6 +27,11 @@ const Checkout = () => {
   const [done, setDone] = useState(false)
   const cartProducts = useAppSelector(state => state.cart)
   const [email, setEmail] = useState('')
+  const [clientSecret, setClientSecret] = useState("");
+
+
+
+
   const totalProductsPrice = cartProducts.reduce((previousValue, currentItem) => (currentItem.quantity * currentItem?.product.price), 0)
   const total = totalProductsPrice + tax + shipping_fee
   // console.log(email)
@@ -26,15 +39,42 @@ const Checkout = () => {
   // const handleEmailInput =(e: React.FormEvent) => {
   //   setEmail()
   // }
-  const doPost = async () => {
-    const result = await postTotal(String(total))
-    return result
-  }
+  const doPost = async () => { return await postTotal({ total }) }
+  // console.log(clientSecret)
 
-useEffect( () => {
-   const result = doPost()
-   console.log(result)
+
+  useEffect(() => {
+
+    doPost()
+      .then((response) => {
+        const payload = response as { data: { clientSecret: string } }
+        setClientSecret(payload.data.clientSecret)
+      })
+
   }, [])
+
+
+
+  const appearance: Appearance = {
+    theme: 'stripe',
+    variables: {
+      fontFamily: 'Poppins',
+      colorPrimary: '#0570de',
+      // borderWidth: '1px',
+      borderRadius: "6px",
+      // borderColor: "#CDC087",
+      // boxShadow: "0px"com
+
+    }
+  };
+  const options: StripeElementsOptions = {
+    clientSecret,
+    appearance,
+    fonts: [{
+      cssSrc: "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700"
+    }],
+
+  };
 
   return (
     // <div> Checkout</div>
@@ -117,9 +157,18 @@ useEffect( () => {
 
         <FirstSection value={email} setEmail={setEmail} />
         <SecondSection />
-        <ThirdSection />
-      </div>
 
+
+        <ThirdSection />
+      <div>
+
+        {clientSecret && (
+          <Elements options={options } stripe={stripePromise}>
+            <CheckoutForm />
+          </Elements>
+        )}
+      </div>
+      </div>
     </SectionLayout>
   )
 }

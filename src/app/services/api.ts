@@ -143,9 +143,9 @@ export const api = createApi({
         method: "GET",
       })
     }),
-    postTotal: builder.mutation<{clientSecret: string} , string>({
+    postTotal: builder.mutation< {clientSecret: string} , {total: number}>({
       query: (body) => ({
-        url: "/create-payment-intent",
+        url: "create-payment-intent",
         method: "POST",
         body
       })
