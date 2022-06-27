@@ -62,7 +62,10 @@ export interface SignUpRequest {
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://shopr-server-main.herokuapp.com/api/',
+    baseUrl: 'https://shopr-server.herokuapp.com/api/',
+    // baseUrl: 'https://shopr-backend.herokuapp.com/api/',
+    // baseUrl: 'https://shopr-server-main.herokuapp.com/api/',
+    // baseUrl: 'http://localhost:6000/api/',
     prepareHeaders: (headers, { getState }) => {
       // By default, if we have a token in the store, let's use that for authenticated requests
       const token = (getState() as RootState).auth.token || localStorage.getItem("token")
@@ -139,6 +142,13 @@ export const api = createApi({
         url: `cart/${id}`,
         method: "GET",
       })
+    }),
+    postTotal: builder.mutation<{clientSecret: string} , string>({
+      query: (body) => ({
+        url: "/create-payment-intent",
+        method: "POST",
+        body
+      })
     })
   }),
 })
@@ -151,4 +161,6 @@ export const {
   useSignupMutation,
   useNewProductsHomeQuery,
   usePostCartMutation ,
-useGetCartQuery} = api
+  useGetCartQuery,
+  usePostTotalMutation
+} = api

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Input from '../Input'
 import SectionLayout from '../SectionLayout'
 import FirstSection from './FirstSection'
@@ -8,11 +8,13 @@ import { useAppSelector } from '../../app/hooks'
 import ProductSideBar from '../ProductSideBar.tsx/ProductSideBar'
 import Button from '../Button'
 import { ReactComponent as ArrowDown } from "../../assets/svgs/arrowdown.svg"
+import { usePostTotalMutation } from '../../app/services/api'
 
 const tax = Math.floor(Math.random() * 10)
 const shipping_fee = 20
 
 const Checkout = () => {
+  const [postTotal, { isLoading }] = usePostTotalMutation()
   const [open, setOpen] = useState(false)
   const [done, setDone] = useState(false)
   const cartProducts = useAppSelector(state => state.cart)
@@ -24,6 +26,16 @@ const Checkout = () => {
   // const handleEmailInput =(e: React.FormEvent) => {
   //   setEmail()
   // }
+  const doPost = async () => {
+    const result = await postTotal(String(total))
+    return result
+  }
+
+useEffect( () => {
+   const result = doPost()
+   console.log(result)
+  }, [])
+
   return (
     // <div> Checkout</div>
     <SectionLayout className='md:flex justify-between flex-row-reverse md:py-3' >
