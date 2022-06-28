@@ -43,7 +43,7 @@ const ProductSideBar = ({ name, price, size, color, quantity ,id , image}: Props
             <div className='flex flex-col justify-between flex-grow'>
                 <div className='flex justify-between items-start'>
                     <div>
-                        <p className='leading-none'>{name}</p>
+                        <p className='leading-none text-sm mr-2'>{name}</p>
                         <p className='divide-x-[1px] divide divide-primary-100 text-primary-100  fle leading-[100%] text-xs'>
                             <p className='pr-1 leading-none inline-block'>{size}</p>
                             <p className='pl-1 leading-none inline-block '>{color}</p>
