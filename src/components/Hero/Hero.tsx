@@ -2,6 +2,8 @@ import React, { useState, useLayoutEffect, useEffect } from 'react'
 import Button from '../Button';
 import Mobile from "../../assets/videos/mobile.mp4"
 import Desktop from "../../assets/videos/desktop.mp4"
+import PosterMobile from "../../assets/images/men-shoes.jpg"
+import PosterDesktop from "../../assets/images/twowomen.jpg"
 
 
 const getVideoSrc = (width: number) => {
@@ -48,12 +50,12 @@ const Hero = () => {
             {/* <div className='w-full md:aspect-video lg:absolute top-0 left-0 right-0 bottom-0 h-full md:object-contain lg:-translate-y-1/4 hidden md:block'> */}
             <div className='w-full md:aspect-video lg:absolute top-0 left-0 right-0 bottom-0 h-screen md:object-contain lg:-translate-y-1/4 hidden md:block'>
                 {/* <img src={Mobile} className="" /> */}
-                <video src={Mobile}  autoPlay muted loop className='video w-full' playsInline onLoad={() => setIsLoadComplete(true)}/>
+                <video src={Mobile}  autoPlay muted loop className='video w-full' playsInline onLoad={() => setIsLoadComplete(true)} poster={PosterMobile}/>
 
 
             </div>
             <div className='w-full md:aspect-video lg:absolute top-0 left-0 right-0 bottom-0 h-full md:object-contain lg:-translate-y-1/4 block md:hidden'>
-                <video id="video" autoPlay muted loop   className='video w-full ' playsInline src={Desktop} onLoad={() => setIsLoadComplete(true)} />
+                <video id="video" autoPlay muted loop   className='video w-full ' playsInline src={Desktop} onLoad={() => setIsLoadComplete(true)} poster={PosterMobile}/>
                 {/* <img src={Desktop} className="" /> */}
             </div>
             <div>
