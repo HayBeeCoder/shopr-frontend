@@ -23,7 +23,7 @@ import { RootState } from '../../app/store'
 
 interface Props {
 
-     pathname: string
+     pathname?: string
 }
 
 const Header: React.FC<Props> = ({ pathname }) => {
@@ -42,7 +42,7 @@ const Header: React.FC<Props> = ({ pathname }) => {
      // console.log(menuOpen)
      return (
           <>
-               <header className="flex justify-between px-[12px] lg:px-[28px] relative py-[13px] md:pt-[15px] items-center z-[1000] flex-grow-0 h-max flex-shrink">
+               <header className="flex justify-between px-[12px] lg:px-[28px] relative py-[13px] md:pt-[15px] items-center z-[1000] flex-grow-0 h-max flex-shrink ">
 
 
                     {/* both div and Siidebar below will be controlled by hamburger state  */}
@@ -52,15 +52,17 @@ const Header: React.FC<Props> = ({ pathname }) => {
                     <Overlay menuOpen={menuOpen} handleClick={handleCloseClick} />
 
 
-                    <Maybe test={pathname != "/checkout"}>
+               <Maybe test={pathname != "/checkout"}>
 
-                         <div className="md:hidden md:w-[330px] md:gap-10">
-                              <Hamburger handleClick={handleHamburgerClick} />
+                    <div className="md:hidden md:w-[330px] md:gap-10">
+                         <Hamburger handleClick={handleHamburgerClick} />
 
-                         </div>
-                    </Maybe>
+                    </div>
+               </Maybe>
 
-                    <div className="hidden md:block md:w-[330px] ">
+               {/* <span className="bg-orange-400"> adsfjklsda</span> */}
+
+                    <div className={`hidden md:block md:w-[330px] ${pathname == "/checkout" ? " scale-0" : "scale-100"}`}>
                          <Nav />
 
                     </div>
