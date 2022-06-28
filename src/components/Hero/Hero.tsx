@@ -45,8 +45,11 @@ const Hero = () => {
         vid.forEach(v => v.autoplay = true)
 
     }, [])
+
+
+
     return (
-        <div className='md:flex-grow flex-shrink-0 bg-secondary-600/70 relative overflow-hidden h-screen'>
+        <div className='md:flex-grow flex-shrink-0 bg-white relative overflow-hidden h-screen'>
             {/* <div className='w-full md:aspect-video lg:absolute top-0 left-0 right-0 bottom-0 h-full md:object-contain lg:-translate-y-1/4 hidden md:block'> */}
             <div className='w-full md:aspect-video lg:absolute top-0 left-0 right-0 bottom-0 h-screen md:object-contain lg:-translate-y-1/4 hidden md:block'>
                 {/* <img src={Mobile} className="" /> */}
