@@ -22,9 +22,11 @@ import { useSelector } from "react-redux"
 import { RootState } from '../../app/store'
 
 interface Props {
+
+     pathname: string
 }
 
-const Header: React.FC<Props> = ({ }) => {
+const Header: React.FC<Props> = ({ pathname }) => {
      const { token, user } = useSelector((state: RootState) => state.auth)
 
      const [userLoggedIn, setUserLoggedIn] = useState(false)
@@ -45,13 +47,18 @@ const Header: React.FC<Props> = ({ }) => {
 
                     {/* both div and Siidebar below will be controlled by hamburger state  */}
                     {/* {menuOpen && <div className="md:hidden w-screen left-0 top-0 h-screen z-[990] bg-black/50 fixed" handleClick={handleCloseClick}></div>} */}
+
                     <Sidebar menuOpen={menuOpen} handleCloseClick={handleCloseClick} />
                     <Overlay menuOpen={menuOpen} handleClick={handleCloseClick} />
 
-                    <div className="md:hidden md:w-[330px] md:gap-10">
-                         <Hamburger handleClick={handleHamburgerClick} />
 
-                    </div>
+                    <Maybe test={pathname != "/checkout"}>
+
+                         <div className="md:hidden md:w-[330px] md:gap-10">
+                              <Hamburger handleClick={handleHamburgerClick} />
+
+                         </div>
+                    </Maybe>
 
                     <div className="hidden md:block md:w-[330px] ">
                          <Nav />
@@ -63,12 +70,16 @@ const Header: React.FC<Props> = ({ }) => {
                          <Logo />
                     </div>
 
-                    <div className="flex  md:w-[330px] gap-5 justify-end ">
 
-                         <Profile userLoggedIn={Boolean(token)} />
-                         <Cart />
+                    <Maybe test={pathname != "/checkout"}>
 
-                    </div>
+                         <div className="flex  md:w-[330px] gap-5 justify-end ">
+
+                              <Profile userLoggedIn={Boolean(token)} />
+                              <Cart />
+
+                         </div>
+                    </Maybe >
                </header>
           </>
      )
@@ -77,3 +88,4 @@ const Header: React.FC<Props> = ({ }) => {
 
 export default Header;
 import ProfileInactive from "./"
+import Maybe from "../Maybe";

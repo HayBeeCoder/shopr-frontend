@@ -48,7 +48,7 @@ const Checkout = () => {
       <div className='md:w-1/3 py-4 md:py-6 border-t-2 md:border-0 border-t-primary-100'>
         <div>
 
-          <p className='font-semibold text-xl flex leading-none justify-between items-center'>
+          <div className='font-semibold text-xl flex leading-none justify-between items-center'>
             <span>
 
               Your Cart ({cartProducts.reduce((previousValue, currentItem) => (currentItem.quantity + previousValue), 0)})
@@ -60,7 +60,7 @@ const Checkout = () => {
                 <ArrowDown />
               </button>
             </div>
-          </p>
+          </div>
         </div>
 
         <div className={` md:block ${open ? "block" : "hidden"}`} >

@@ -11,11 +11,12 @@ const getVideoSrc = (width: number) => {
 
 
 const Hero = () => {
-    const [isVideoLoaded, setIsVideoLoaded] = useState(false)
-    const src = getVideoSrc(window.innerWidth)
-    const onLoadedData = () => {
-        setIsVideoLoaded(true);
-    }
+    const [isLoadComplete, setIsLoadComplete] = useState(false)
+    console.log(isLoadComplete)
+    // const src = getVideoSrc(window.innerWidth)
+    // const onLoadedData = () => {
+    //     setIsVideoLoaded(true);
+    // }
 
     // useLayoutEffect(() => {
     //     const w = window.matchMedia("(max-width: 700px)");
@@ -43,15 +44,16 @@ const Hero = () => {
 
     }, [])
     return (
-        <div className='md:flex-grow flex-shrink-0 bg-secondary-600/70 relative overflow-hidden '>
-            <div className='w-full md:aspect-video lg:absolute top-0 left-0 right-0 bottom-0 h-full md:object-contain lg:-translate-y-1/4 hidden md:block'>
+        <div className='md:flex-grow flex-shrink-0 bg-secondary-600/70 relative overflow-hidden h-screen'>
+            {/* <div className='w-full md:aspect-video lg:absolute top-0 left-0 right-0 bottom-0 h-full md:object-contain lg:-translate-y-1/4 hidden md:block'> */}
+            <div className='w-full md:aspect-video lg:absolute top-0 left-0 right-0 bottom-0 h-screen md:object-contain lg:-translate-y-1/4 hidden md:block'>
                 {/* <img src={Mobile} className="" /> */}
-                <video src={Mobile} autoPlay muted loop className='video w-full' playsInline />
+                <video src={Mobile}  autoPlay muted loop className='video w-full' playsInline onLoad={() => setIsLoadComplete(true)}/>
 
 
             </div>
             <div className='w-full md:aspect-video lg:absolute top-0 left-0 right-0 bottom-0 h-full md:object-contain lg:-translate-y-1/4 block md:hidden'>
-                <video id="video" autoPlay muted loop className='video w-full ' playsInline src={Desktop} />
+                <video id="video" autoPlay muted loop   className='video w-full ' playsInline src={Desktop} onLoad={() => setIsLoadComplete(true)} />
                 {/* <img src={Desktop} className="" /> */}
             </div>
             <div>
