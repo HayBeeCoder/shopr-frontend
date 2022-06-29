@@ -1,17 +1,23 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 
 interface Props {
     image: string,
     name: string
     className?: string
+    category: string
+    id: string
 }
 
-const NewProduct: React.FC<Props> = ({ image, name ,className = " grid-cols-1"}) => {
+const NewProduct: React.FC<Props> = ({ image, name, category, id, className = " grid-cols-1" }) => {
     return (
-        <div className={"bg-secondary-400/300 relative " + className}>
-            <img src={image} alt={name} width="300" height="300"  className='w-full h-auto'/>
-        </div>
+        <Link to={`/collections/${category}/${id}`}>
+            <div className={"bg-secondary-400/300 relative overflow-hidden hover:scale-105 cursor-pointer" + className}>
+                <img src={image} alt={name} width="300" height="300" className='w-full h-auto ' />
+                <p className='hover:no-underline text-[12px] underline text-primary-50'>{name}</p>
+            </div>
+        </Link>
     )
 }
 

@@ -14,7 +14,8 @@ const getVideoSrc = (width: number) => {
 
 const Hero = () => {
     const [isLoadComplete, setIsLoadComplete] = useState(false)
-    console.log(isLoadComplete)
+    const [isMobile,setIsMobile] = useState(false)
+    // console.log(isLoadComplete)
     // const src = getVideoSrc(window.innerWidth)
     // const onLoadedData = () => {
     //     setIsVideoLoaded(true);
@@ -41,17 +42,19 @@ const Hero = () => {
     // }, [])
     useEffect(() => {
         const w = window.matchMedia("(max-width: 700px)");
-        const vid = document.querySelectorAll("video")
-        vid.forEach(v => v.autoplay = true)
+        // if(w.matches) setIsMobile
+        // const vid = document.querySelectorAll("video")
+        // vid.forEach(v => v.autoplay = true)
 
 
-        window.addEventListener("DOMContentLoaded" , function(){
-            if(window.screen.width < 768){
-                const header = this.document.querySelector("header")
-                console.log(header)
-            }
+        // window.addEventListener("DOMContentLoaded" , function(){
+        //     const header = document.querySelector("header")
+        //     console.log(header)
+        //     if(window.screen.width < 768){
+        //         console.log(header)
+        //     }
 
-        })
+        // })
 
     }, [])
 
@@ -62,14 +65,18 @@ const Hero = () => {
             {/* <div className='w-full md:aspect-video lg:absolute top-0 left-0 right-0 bottom-0 h-full md:object-contain lg:-translate-y-1/4 hidden md:block'> */}
             <div className='w-full md:aspect-video lg:absolute top-0 left-0 right-0 bottom-0 h-screen md:object-contain lg:-translate-y-1/4 hidden md:block'>
                 {/* <img src={Mobile} className="" /> */}
-                <video src="            https://res.cloudinary.com/abasscodes/video/upload/v1656449343/shopr/homepage-collections/mobile_xv66ic.mp4"  autoPlay muted loop className='video w-full' playsInline onLoad={() => setIsLoadComplete(true)} poster={PosterMobile}/>
+                <video src="https://res.cloudinary.com/abasscodes/video/upload/v1656449343/shopr/homepage-collections/mobile_xv66ic.mp4"  autoPlay muted loop className='video w-full' playsInline onLoad={() => setIsLoadComplete(true)} poster={PosterDesktop}/>
                 {/* <video src={Mobile}  autoPlay muted loop className='video w-full' playsInline onLoad={() => setIsLoadComplete(true)} poster={PosterMobile}/> */}
 
 
             </div>
-            <div className='w-full md:aspect-video lg:absolute top-0 left-0 right-0 bottom-0 h-full md:object-contain lg:-translate-y-1/4 block md:hidden'>
+            <div className='w-full md:aspect-video lg:absolute top-0 left-0 right-0 bottom-0 h-full md:object-contain lg:-translate-y-1/4 block md:hidden my-auto '>
                 {/* <video id="video" autoPlay muted loop   className='video w-full ' playsInline src={Desktop} onLoad={() => setIsLoadComplete(true)} poster={PosterMobile}/> */}
-                <video id="video" autoPlay muted loop   className='video w-full ' playsInline src="https://res.cloudinary.com/abasscodes/video/upload/v1656449362/shopr/homepage-collections/desktop_g3bwzb.mp4" onLoad={() => setIsLoadComplete(true)} poster={PosterMobile}/>
+                {/* //this is for mobile */}
+                {/* <div className=''> */}
+
+                <video id="video" autoPlay muted loop   className='absolute bottom-0 video w-full  ' playsInline src="https://res.cloudinary.com/abasscodes/video/upload/v1656449362/shopr/homepage-collections/desktop_g3bwzb.mp4" onLoad={() => setIsLoadComplete(true)} poster={PosterMobile}/>
+                {/* </div> */}
                 {/* <img src={Desktop} className="" /> */}
             </div>
             <div>
