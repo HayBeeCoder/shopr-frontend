@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useEffect } from 'react'
+import React, { useState, useLayoutEffect, useEffect, useRef } from 'react'
 import Button from '../Button';
 import Mobile from "../../assets/videos/mobile.mp4"
 import Desktop from "../../assets/videos/desktop.mp4"
@@ -15,6 +15,8 @@ const getVideoSrc = (width: number) => {
 const Hero = () => {
     const [isLoadComplete, setIsLoadComplete] = useState(false)
     const [isMobile,setIsMobile] = useState(false)
+    const videoRef = useRef<HTMLVideoElement | null>(null)
+    const [vidHeight,setVidHeight] = useState(0)
     // console.log(isLoadComplete)
     // const src = getVideoSrc(window.innerWidth)
     // const onLoadedData = () => {
@@ -41,27 +43,16 @@ const Hero = () => {
     //     }
     // }, [])
     useEffect(() => {
-        const w = window.matchMedia("(max-width: 700px)");
-        // if(w.matches) setIsMobile
-        // const vid = document.querySelectorAll("video")
-        // vid.forEach(v => v.autoplay = true)
-
-
-        // window.addEventListener("DOMContentLoaded" , function(){
-        //     const header = document.querySelector("header")
-        //     console.log(header)
-        //     if(window.screen.width < 768){
-        //         console.log(header)
-        //     }
-
-        // })
+      const {clientTop,clientWidth,videoHeight,clientHeight} = videoRef.current as HTMLVideoElement
+    //   console.log(videoHeight,clientHeight)
+      setVidHeight(videoHeight)
 
     }, [])
 
 
 
     return (
-        <div className='md:flex-grow flex-shrink-0 bg-white relative overflow-hidden h-screen'>
+        <div className={`md:flex-grow flex-shrink-0 bg-white relative overflow-hidden w-full aspect-[9/16] md:h-screen`}>
             {/* <div className='w-full md:aspect-video lg:absolute top-0 left-0 right-0 bottom-0 h-full md:object-contain lg:-translate-y-1/4 hidden md:block'> */}
             <div className='w-full md:aspect-video lg:absolute top-0 left-0 right-0 bottom-0 h-screen md:object-contain lg:-translate-y-1/4 hidden md:block'>
                 {/* <img src={Mobile} className="" /> */}
@@ -70,12 +61,12 @@ const Hero = () => {
 
 
             </div>
-            <div className='w-full md:aspect-video lg:absolute top-0 left-0 right-0 bottom-0 h-full md:object-contain lg:-translate-y-1/4 block md:hidden my-auto '>
+            <div className='w-full h-full  block md:hidden bg-teal-400'>
                 {/* <video id="video" autoPlay muted loop   className='video w-full ' playsInline src={Desktop} onLoad={() => setIsLoadComplete(true)} poster={PosterMobile}/> */}
                 {/* //this is for mobile */}
                 {/* <div className=''> */}
 
-                <video id="video" autoPlay muted loop   className='absolute bottom-0 video w-full  ' playsInline src="https://res.cloudinary.com/abasscodes/video/upload/v1656449362/shopr/homepage-collections/desktop_g3bwzb.mp4" onLoad={() => setIsLoadComplete(true)} poster={PosterMobile}/>
+                <video ref={videoRef} id="video" autoPlay muted loop   className='bg-orange-700 inline h-max absolute bottom-0 video w-full  ' playsInline src="https://res.cloudinary.com/abasscodes/video/upload/v1656449362/shopr/homepage-collections/desktop_g3bwzb.mp4" onLoad={() => setIsLoadComplete(true)} poster={PosterMobile}/>
                 {/* </div> */}
                 {/* <img src={Desktop} className="" /> */}
             </div>
