@@ -61,12 +61,12 @@ const Hero = () => {
 
 
             </div>
-            <div className='w-full h-full  block md:hidden bg-teal-400'>
+            <div className='w-full h-full  block md:hidden bg-secondary-100'>
                 {/* <video id="video" autoPlay muted loop   className='video w-full ' playsInline src={Desktop} onLoad={() => setIsLoadComplete(true)} poster={PosterMobile}/> */}
                 {/* //this is for mobile */}
                 {/* <div className=''> */}
 
-                <video ref={videoRef} id="video" autoPlay muted loop   className='bg-orange-700 inline h-max absolute bottom-0 video w-full  ' playsInline src="https://res.cloudinary.com/abasscodes/video/upload/v1656449362/shopr/homepage-collections/desktop_g3bwzb.mp4" onLoad={() => setIsLoadComplete(true)} poster={PosterMobile}/>
+                <video ref={videoRef} id="video" autoPlay muted loop className='w-full h-full' width="400" height="720" playsInline src="https://res.cloudinary.com/abasscodes/video/upload/v1656449362/shopr/homepage-collections/desktop_g3bwzb.mp4" onLoad={() => setIsLoadComplete(true)} poster={PosterMobile}/>
                 {/* </div> */}
                 {/* <img src={Desktop} className="" /> */}
             </div>

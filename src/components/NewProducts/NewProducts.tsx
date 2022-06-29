@@ -16,8 +16,15 @@ const NewProducts = () => {
             <div className='-mx-[12px] px-[12px] lg:px-20 lg:-mx-[28px] grid grid-cols-2 lg:grid-cols-3 gap-8 py-36 -my-20 bg-gradient-to-b from-[#382e39]/40  via-[#382e39]/60 to-[#382e39]/40 relative'>
                 {/* <div className='-mx-[12px] px-[12px] lg:px-20 lg:-mx-[28px] grid grid-cols-2 lg:grid-cols-3 gap-4 py-36 -my-20 bg-gradient-to-b from-[#382e39]/20 via-[#382e39]/70 to-[#382e39]/20'> */}
                 <div className='absolute top-0 left-0 bottom-0 right-0 bg-green-300 -z-20 overflow-hidden'>
-                    <img src={BackGroundDesktop} className='hidden md:block object-cover w-full h-full scale-150 -translate-y-1/4' />
-                    <img src={BackGroundMobile} className='md:hidden' />
+                  
+
+                    {/* Optimization strategy  */}
+                    <picture>
+                        <source media="(max-width: 799px)" srcSet={BackGroundMobile}/>
+                        <source media="(min-width: 800px)" srcSet={BackGroundDesktop}/>
+                        <img src={BackGroundMobile} className="object-cover w-full h-full scale-150 -translate-y-1/4"/>
+
+                    </picture>
 
                 </div>
 
