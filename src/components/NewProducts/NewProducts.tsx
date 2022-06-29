@@ -44,9 +44,9 @@ const NewProducts = () => {
 
                         })}
                         <div className="col-span-2 lg:col-span-1 row-span-1 relative text-center flex items-center justify-center  ">
-                            <div className='text-primary-50'>
+                            <div className='text-primary-50 '>
 
-                                <h3 className='font-bold text-2xl py-40 lg:py-0 '>
+                                <h3 className='font-bold text-2xl lg:py-0 '>
                                     <span className='text-secondary-500 mr-2'>
                                         NEW
                                     </span>

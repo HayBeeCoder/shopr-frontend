@@ -3,7 +3,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import NavItem from './NavItem'
 
-const LINKS = ["Men" , "Women" , "Children"]
+const LINKS = ["Men" , "Women" ]
 
 const Nav = () => {
 
