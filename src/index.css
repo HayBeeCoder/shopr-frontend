@@ -7,6 +7,9 @@
  * {
     -webkit-tap-highlight-color: transparent;
  }
+ html{
+  scroll-behavior: smooth
+ }
 
  img{
     aspect-ratio: attr(width)/attr(height)

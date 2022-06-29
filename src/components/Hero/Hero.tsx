@@ -13,62 +13,21 @@ const getVideoSrc = (width: number) => {
 
 
 const Hero = () => {
-    const [isLoadComplete, setIsLoadComplete] = useState(false)
-    const [isMobile,setIsMobile] = useState(false)
+
+
     const videoRef = useRef<HTMLVideoElement | null>(null)
-    const [vidHeight,setVidHeight] = useState(0)
-    // console.log(isLoadComplete)
-    // const src = getVideoSrc(window.innerWidth)
-    // const onLoadedData = () => {
-    //     setIsVideoLoaded(true);
-    // }
-
-    // useLayoutEffect(() => {
-    //     const w = window.matchMedia("(max-width: 700px)");
-    //     const vid = document.getElementById("video") as HTMLVideoElement
-
-    //     if (w.matches) {
-    //         vid.pause();
-    //         // source.removeAttribute("src");
-    //         // source.setAttribute("src", "https://storage.googleapis.com/coverr-main/mp4/Love-Boat.mp4");
-    //         vid.setAttribute("src", "https://ik.imagekit.io/haybececodes/mobile-hero-video_720x1280_2kqek7_j4.mp4?ik-sdk-version=javascript-1.4.3&updatedAt=1652387652871");
-    //          vid.load();
-    //         vid.play();
-    //     } else {
-    //          vid.pause();
-    //         // source.removeAttribute("src");
-    //         vid.setAttribute("src", "https://ik.imagekit.io/haybececodes/desktop-hero-video_854x480_bpPIjPIB9.mp4?ik-sdk-version=javascript-1.4.3&updatedAt=1652387638028");
-    //          vid.load();
-    //          vid.play();
-    //     }
-    // }, [])
-    useEffect(() => {
-      const {clientTop,clientWidth,videoHeight,clientHeight} = videoRef.current as HTMLVideoElement
-    //   console.log(videoHeight,clientHeight)
-      setVidHeight(videoHeight)
-
-    }, [])
-
-
+  
 
     return (
         <div className={`md:flex-grow flex-shrink-0 bg-white relative overflow-hidden w-full aspect-[9/16] md:h-screen`}>
-            {/* <div className='w-full md:aspect-video lg:absolute top-0 left-0 right-0 bottom-0 h-full md:object-contain lg:-translate-y-1/4 hidden md:block'> */}
-            <div className='w-full md:aspect-video lg:absolute top-0 left-0 right-0 bottom-0 h-screen md:object-contain lg:-translate-y-1/4 hidden md:block'>
-                {/* <img src={Mobile} className="" /> */}
-                <video src="https://res.cloudinary.com/abasscodes/video/upload/v1656449343/shopr/homepage-collections/mobile_xv66ic.mp4"  autoPlay muted loop className='video w-full' playsInline onLoad={() => setIsLoadComplete(true)} poster={PosterDesktop}/>
-                {/* <video src={Mobile}  autoPlay muted loop className='video w-full' playsInline onLoad={() => setIsLoadComplete(true)} poster={PosterMobile}/> */}
+           <div className='w-full md:aspect-video lg:absolute top-0 left-0 right-0 bottom-0 h-screen md:object-contain lg:-translate-y-1/4 hidden md:block'>
+                <video src="https://res.cloudinary.com/abasscodes/video/upload/v1656449343/shopr/homepage-collections/mobile_xv66ic.mp4"  autoPlay muted loop className='video w-full' playsInline poster={PosterDesktop}/>
 
 
             </div>
             <div className='w-full h-full  block md:hidden bg-secondary-100'>
-                {/* <video id="video" autoPlay muted loop   className='video w-full ' playsInline src={Desktop} onLoad={() => setIsLoadComplete(true)} poster={PosterMobile}/> */}
-                {/* //this is for mobile */}
-                {/* <div className=''> */}
 
-                <video ref={videoRef} id="video" autoPlay muted loop className='w-full h-full' width="400" height="720" playsInline src="https://res.cloudinary.com/abasscodes/video/upload/v1656449362/shopr/homepage-collections/desktop_g3bwzb.mp4" onLoad={() => setIsLoadComplete(true)} poster={PosterMobile}/>
-                {/* </div> */}
-                {/* <img src={Desktop} className="" /> */}
+                <video ref={videoRef} id="video" autoPlay muted loop className='w-full h-full' width="400" height="720" playsInline src="https://res.cloudinary.com/abasscodes/video/upload/v1656449362/shopr/homepage-collections/desktop_g3bwzb.mp4" poster={PosterMobile}/>
             </div>
             <div>
                 <div className='absolute top-0 left-0 right-0 bottom-0 z-[900] bg-black/25'>
@@ -78,9 +37,12 @@ const Hero = () => {
                     <h1 className='font-extrabold text-5xl md:text-6xl lg:text-7xl'>Your body deserves better</h1>
                     <p className='font-light text-xs lg:text-sm '> Let's go get what you deserve , Dear.</p>
                     <div className='inline-block mt-3 lg:mt-10'>
+                        <a href="#collections">
+
                         <Button classname='inline-block px-16'>
                             Start Shopping
                         </Button>
+                        </a>
                     </div>
                 </div>
             </div>
