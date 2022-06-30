@@ -31,8 +31,8 @@ const CartModal = () => {
                     <CloseIcon handleClick={() => navigate(-1)} />
                 </div>
 
-                <div className='flex-grow  top-0 bottom-0  pb-[140px] overflow-y-scroll'>
-                    <div className='flex-shrink flex-grow-0  my-auto overflow-y-scroll mt-5 py-4 divide-y-[20px] divide-white px-3 lg:px-7  '>
+                <div className='flex-grow  top-0 bottom-0  pb-[140px] '>
+                    <div className='flex-shrink flex-grow-0  my-auto  mt-5 py-4 divide-y-[20px] divide-white px-3 lg:px-7  '>
                         {
                             cartProducts.map(product => (
                                 <ProductSideBar

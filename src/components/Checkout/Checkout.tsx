@@ -9,7 +9,8 @@ import { useAppSelector } from '../../app/hooks'
 import ProductSideBar from '../ProductSideBar.tsx/ProductSideBar'
 import Button from '../Button'
 import { ReactComponent as ArrowDown } from "../../assets/svgs/arrowdown.svg"
-
+import { REGEX_EMAIL } from '../../constants'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 
 
@@ -20,11 +21,19 @@ const shipping_fee = 20
 
 
 const Checkout = () => {
- 
+
+  const navigate = useNavigate()
+  const { pathname } = useLocation()
   const [open, setOpen] = useState(false)
   const [done, setDone] = useState(false)
+  const userObject = useAppSelector(state => state.auth)
+  const [showEmailError,setShowEmailError] = useState(false)
   const cartProducts = useAppSelector(state => state.cart)
-  const [email, setEmail] = useState('')
+  const [email, setEmail] = useState(userObject?.user?.email ? userObject?.user.email : '')
+  const [isEmailCorrect, setIsEmailCorrect] = useState(userObject?.user?.email ? true : false)
+  const [edit, setEdit] = useState(userObject?.user?.email ? false : true)
+
+
 
 
 
@@ -36,11 +45,37 @@ const Checkout = () => {
   // const handleEmailInput =(e: React.FormEvent) => {
   //   setEmail()
   // }
- 
+
+  const handleFirstButtonClick = () => {
+
+    if (isEmailCorrect) {
+      setEdit(false)
+      setShowEmailError(false)
+      // navigate(pathname + "#shipping")
+    }
+    setShowEmailError(true)
+
+
+  }
+
+  const unEdit = () =>{
+     setEdit(true)
+  }
 
 
 
- 
+
+  const handleEdit = (e: React.FormEvent) => {
+    const { value } = e.currentTarget as HTMLInputElement
+    if (REGEX_EMAIL.test(value)) {
+      
+      setIsEmailCorrect(true)
+    } else {
+      setIsEmailCorrect(false)
+    }
+    setEdit(true)
+    setEmail(value)
+  }
 
   return (
     // <div> Checkout</div>
@@ -57,7 +92,7 @@ const Checkout = () => {
 
               <span className='font-medium'>{`$${total}`}</span>
               <button className='p-4 md:hidden' onClick={() => setOpen(open => !open)}>
-                <ArrowDown />
+
               </button>
             </div>
           </div>
@@ -121,20 +156,32 @@ const Checkout = () => {
       </div>
       <div className='space-y-7 md:w-3/5 '>
 
-        <FirstSection value={email} setEmail={setEmail} />
-        <SecondSection />
+        <FirstSection
+          showError={showEmailError}
+          value={email}
+          edit={edit}
+          handleEdit={handleEdit}
+          isEmailCorrect={isEmailCorrect}
+          handleButtonClick={handleFirstButtonClick}
+          unEdit={unEdit}
+        />
+        <SecondSection
+      
+         edit= {edit}
+         isEmailCorrect= {isEmailCorrect}
+         />
 
 
-        <ThirdSection total={total}/>
-      <div>
+        <ThirdSection total={total} />
+        <div>
 
-        {/* {clientSecret && (
+          {/* {clientSecret && (
       
           <Elements options={options } stripe={stripePromise}>
             <CheckoutForm />
           </Elements>
         )} */}
-      </div>
+        </div>
       </div>
     </SectionLayout>
   )

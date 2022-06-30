@@ -5,9 +5,15 @@ import Button from '../Button'
 import FooterSignUp from './FooterSignUp'
 import Accordion from "./Accordion"
 import FooterLink from './FooterLink'
+import { useLocation } from 'react-router-dom'
 
 const Footer = () => {
+  const {pathname} = useLocation()
   return (
+    <>
+{
+  
+    pathname != "/checkout"  &&
     <footer >
       <SectionLayout className='bg-secondary-100 flex-row-reverse space-y-7 lg:space-y-0  text-primary-800 md:flex justify-start gap-20 items-start'>
         
@@ -63,6 +69,8 @@ const Footer = () => {
         <code className='text-center absolute left-0 bottom-0 w-full text-xs'>Designed and Developed by <a className='underline text-secondary-600' href="https://github.com/HayBeeCoder">HayBeeCoder</a> </code>
       </SectionLayout>
     </footer>
+}
+    </>
   )
 }
 

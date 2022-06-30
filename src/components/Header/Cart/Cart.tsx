@@ -12,6 +12,7 @@ const Cart = () => {
             <Link to="/cart"  state={{ backgroundLocation: location }}>
                 <span className="text-[32px] relative ">
                     <p className="inline-block  absolute transform translate-x-2 -translate-y-2 top-0 right-0 bg-secondary-600  text-[10px] leading-none p-2 rounded-full z-10">{cartProducts.reduce((previousValue, currentItem) => (currentItem.quantity + previousValue ), 0)}</p>
+                    {/* <p>sdfjkalfdfj</p> */}
                     <CartIcon />
                 </span>
             </Link>

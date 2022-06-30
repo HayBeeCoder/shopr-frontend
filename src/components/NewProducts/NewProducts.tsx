@@ -62,10 +62,11 @@ const NewProducts = () => {
                                 </p>
                             </div>
                         </div>
-                        {data?.data.slice(4,).map(product => {
+                        {data?.data.slice(4,).map((product,index) => {
                             return <NewProduct
                                 name={product.title}
                                 image={product.images[0][0]}
+                                key={index}
                                 category={product.category[0]}
                                 id={product._id}
 

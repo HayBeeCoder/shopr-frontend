@@ -47,7 +47,7 @@ const Testimonials = () => {
                             if(index == 0 || index == 4 ) size = "small"
                             if(index == 1 || index == 3 ) size = "medium"
                             if(index == 2) size = "large"
-                            return <TestimonialImage size= {size} images={arr} index={index} count={count}/>
+                            return <TestimonialImage size= {size} images={arr} index={index} count={count} key={index}/>
                         })
                     }
                 </div>

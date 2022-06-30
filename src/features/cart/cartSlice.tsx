@@ -32,10 +32,10 @@ export const cartSlice = createSlice({
     reducers: {
 
         decrement: (state, action: PayloadAction<string>) => {
-            console.log(state)
+            // console.log(state)
             const cartItem = state.find((item) => item.product._id == action.payload)
             if (cartItem && cartItem.quantity !== 1) cartItem.quantity -= 1
-            console.log(state)
+            // console.log(state)
 
             localStorage.setItem("cart", JSON.stringify(initialState))
         },
