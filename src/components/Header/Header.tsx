@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Profile from "./Profile";
 import Hamburger from "./Hamburger";
 import Cart from "./Cart";
-import Sidebar from "../Sidebar";
 
+
+// import Sidebar from "../Sidebar";
+
+const Sidebar = lazy(() => import("../Sidebar"))
 //import { ReactComponent as Cart } from "../../assets/svgs/bag.svg"
 // import subcomponent named "widgetChild"
 // import WidgetChild from "./WidgetChild"
@@ -31,6 +34,8 @@ const Header: React.FC<Props> = ({ pathname }) => {
 
      const [userLoggedIn, setUserLoggedIn] = useState(false)
      const [menuOpen, setMenuOpen] = useState(false)
+     
+    const translate = menuOpen ? " translate-x-0" : " -translate-x-full"
      /*
      A sub-component used exclusively by Header.js ( or other components
           in this directory)
@@ -47,20 +52,27 @@ const Header: React.FC<Props> = ({ pathname }) => {
 
                     {/* both div and Siidebar below will be controlled by hamburger state  */}
                     {/* {menuOpen && <div className="md:hidden w-screen left-0 top-0 h-screen z-[990] bg-black/50 fixed" handleClick={handleCloseClick}></div>} */}
+                    {
 
-                    <Sidebar menuOpen={menuOpen} handleCloseClick={handleCloseClick} />
+                         <section className={'md:hidden  fixed w-5/6 bg-white h-screen px-[13px] pt-[15px]  z-[1000] left-0 top-0 transform-gpu duration-200 ease-out ' + translate}>
+                                   <Suspense fallback={<div>Loading</div>}>
+
+                                   <Sidebar menuOpen={menuOpen} handleCloseClick={handleCloseClick} />
+                         </Suspense>
+                              </section>
+                    }
                     <Overlay menuOpen={menuOpen} handleClick={handleCloseClick} />
 
 
-               <Maybe test={pathname != "/checkout"}>
+                    <Maybe test={pathname != "/checkout"}>
 
-                    <div className="md:hidden md:w-[330px] md:gap-10">
-                         <Hamburger handleClick={handleHamburgerClick} />
+                         <div className="md:hidden md:w-[330px] md:gap-10">
+                              <Hamburger handleClick={handleHamburgerClick} />
 
-                    </div>
-               </Maybe>
+                         </div>
+                    </Maybe>
 
-               {/* <span className="bg-orange-400"> adsfjklsda</span> */}
+                    {/* <span className="bg-orange-400"> adsfjklsda</span> */}
 
                     <div className={`hidden md:block md:w-[330px] ${pathname == "/checkout" ? " scale-0" : "scale-100"}`}>
                          <Nav />

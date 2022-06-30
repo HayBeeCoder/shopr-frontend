@@ -37,7 +37,7 @@ const TestimonialImage: React.FC<Props> = ({ size, index, images, count }) => {
     <div className={` rounded-full border-secondary-400 overflow-hidden relative ${className} `}>
 
       {/* <img src={imageSrc} alt="customer" width="400" height="400" className='absolute top-0 left-0 bottom-0 right-0 object-cover h-full '/>  */}
-      <img src={images[finalIndex].image} alt="customer" width="400" height="400" className={'relative md:absolute top-0 left-0 bottom-0 right-0 object-cover h-full scale-100 bg-secondary-100  rounded-full '} style={{ opacity: `${index == Math.floor(LENGTH / 2) ? "1" : "0.6"}` }} />
+      <img className="lazyload" src={images[finalIndex].image} alt="customer" width="400" height="400" className={'relative md:absolute top-0 left-0 bottom-0 right-0 object-cover h-full scale-100 bg-secondary-100  rounded-full '} style={{ opacity: `${index == Math.floor(LENGTH / 2) ? "1" : "0.6"}` }} loading = "lazy"/>
 
 
       {/* <p>{imageSrc}</p> */}

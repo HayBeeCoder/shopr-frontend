@@ -4,7 +4,7 @@ import { Route } from "react-router-dom"
 // pages 
 import Home from "./pages/Home"
 import Products from "./pages/Products"
-import CartModal from "./components/Header/Cart/CartModal"
+
 import LogIn from "./features/auth/Login/Login"
 import SignUp from "./features/auth/SignUp"
 import Layout from "./features/auth/Layout"
@@ -13,8 +13,10 @@ import Component from "./pages/Component"
 import PageLayout from "./layouts/PageLayout"
 import Product from "./pages/Product"
 import Checkout from "./components/Checkout"
+import { lazy, Suspense } from "react"
 
 
+const  CartModal  = lazy( () => import("./components/Header/Cart/CartModal"))
 
 function App() {
   
@@ -48,7 +50,14 @@ function App() {
     {
       state?.backgroundLocation && 
       <Routes>
-          <Route path="/cart" element={<CartModal />} />
+          <Route path="/cart" element={<>
+            <section className='relative w-screen max-w-[420px] h-screen'>
+              <Suspense fallback={<div>Loading...</div>}>
+
+                <CartModal/>
+              </Suspense>
+              </section>
+          </>} />
         </Routes>
     }
    </div>

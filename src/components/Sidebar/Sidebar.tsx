@@ -11,11 +11,9 @@ interface Props {
 
 const Sidebar:React.FC<Props> = ({menuOpen,handleCloseClick}) => {
 
-    const translate = menuOpen ? " translate-x-0" : " -translate-x-full"
     return (
         <>
-            <section className= {'md:hidden  fixed w-5/6 bg-white h-screen px-[13px] pt-[15px]  z-[1000] left-0 top-0 transform-gpu duration-200 ease-out ' + translate}>
-                <div className='flex flex-col gap-16'>
+               <div className='flex flex-col gap-16'>
                     <CloseIcon handleClick={handleCloseClick}/>
                 {/* <button className='text-[32px] p-1 ' onClick={handleCloseClick}>
                     <Close />
@@ -43,7 +41,7 @@ const Sidebar:React.FC<Props> = ({menuOpen,handleCloseClick}) => {
                     </Link>
                 </div>
                 </div>
-            </section>
+            {/* </section> */}
         </>
     )
 }

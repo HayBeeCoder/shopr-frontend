@@ -10,11 +10,11 @@ import { useAppSelector } from '../../../app/hooks'
 const CartModal = () => {
     const navigate = useNavigate()
     const cartProducts = useAppSelector(state => state.cart)
+    
     const cartQuantity = cartProducts.reduce((previousValue, currentItem) => (currentItem.quantity + previousValue), 0)
 
-
     return (
-        <section className='relative w-screen max-w-[420px] h-screen'>
+       <>
             <Overlay menuOpen={true} handleClick={() => navigate(-1)} />
             <div className='w-screen max-w-[500px]  fixed top-0 right-0 overflow-scroll h-screen bg-white pt-[15px] md:[pt-30px]  z-[1100] py-[13px] md:py-[30px] flex flex-col '>
 
@@ -82,7 +82,8 @@ const CartModal = () => {
 
             </div>
 
-        </section>
+            </>
+        // </section>
     )
 }
 
