@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react'
+import React, { lazy, Suspense, useEffect, useState } from 'react'
 import Input from '../Input'
 import { CheckoutSectionLayout } from './CheckoutSectionLayout'
 import { ReactComponent as Card } from "../../assets/svgs/card.svg"
@@ -8,7 +8,7 @@ import { usePostTotalMutation } from '../../app/services/api'
 import { Appearance, loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
 import { StripeElementsOptions } from '@stripe/stripe-js'
-import CheckOutForm from './CheckOutForm'
+const CheckOutForm = lazy(() => import('./CheckOutForm'))
 const stripePromise = loadStripe('pk_test_51LAu75JVJ8U3GhGkLef2bRGnsgyzJSEbvS13F88rw2c18b1pi7R94tei5tx50vQjQVv2tpVY8ELhONt4W9V3o0cC005eUl1hXS')
 
 
@@ -52,9 +52,9 @@ const ThirdSection = ({ total }: { total: number }) => {
       fontFamily: 'Poppins , sans-serif',
       fontSizeBase: "16px",
       colorText: "#221C23",
-      
+
     },
-    
+
     rules: {
       '.Input': {
         border: '1px solid #CDC087',
@@ -65,11 +65,11 @@ const ThirdSection = ({ total }: { total: number }) => {
         border: '1px solid #221C23',
         // fontSize: "0.75rem"
       },
-      '.Error':{
+      '.Error': {
         fontSize: "0.75em",
         paddingTop: "4px",
         paddingBottom: "8px"
-        
+
       }
       ,
       '.Input--invalid': {
@@ -80,7 +80,7 @@ const ThirdSection = ({ total }: { total: number }) => {
       '.Label': {
         border: '1px solid #CDC087',
         color: "#221C23",
-        
+
         fontSize: "0.75rem"
       },
       '.Tab': {
@@ -107,21 +107,24 @@ const ThirdSection = ({ total }: { total: number }) => {
   const options: StripeElementsOptions = {
     clientSecret,
     appearance,
-    fonts: [{
-      cssSrc: "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700"
-    }],
+    // fonts: [{
+    //   // cssSrc: "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700"
+    // }],
 
   };
 
   return (
-    <CheckoutSectionLayout number={3} title='Payment Details' >
+    <CheckoutSectionLayout number={3} title='Payment Details' done={false} >
       <div className='mt-7 pl-2 space-y-7'>
 
 
         {clientSecret && (
 
           <Elements options={options} stripe={stripePromise}>
-            <CheckOutForm />
+            <Suspense fallback={<div>Loading....</div>}>
+
+              <CheckOutForm />
+            </Suspense>
           </Elements>
         )}
 
