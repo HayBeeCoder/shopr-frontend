@@ -28,7 +28,7 @@ const FirstSection = ({ value, edit, handleEdit, isEmailCorrect , unEdit, handle
             <React.Fragment>
 
 
-                <div className=' my-3 space-y-5 max-w-[500px] pl-2'>
+                <div className=' my-3 space-y-5  pl-2'>
                     {
                         isEmailCorrect && edit == false ?
                         <div className='flex justify-between '>
@@ -38,7 +38,7 @@ const FirstSection = ({ value, edit, handleEdit, isEmailCorrect , unEdit, handle
                         :
                         <>
                                 <p className=' text-[10px] pl-2 -mt-1 text-primary-100'>Already have an accout? <span className='underline text-primary-800'>Login</span></p>
-                                <div>
+                                <>
 
                                 <Input
                                     value={value}
@@ -47,12 +47,13 @@ const FirstSection = ({ value, edit, handleEdit, isEmailCorrect , unEdit, handle
                                     type='text'
                                     label=''
                                     handleChange={(e: React.FormEvent) => handleEdit(e)}
+                                    showRedBorder={showError && !isEmailCorrect}
                                 >
                                     <Email />
                                 </Input>
                                 <p className='text-red-400 text-xs mt-[4px]'>{showError && !isEmailCorrect && "Invalid Email!"}</p>
-                                    </div>
-                                <Button onClick={e => handleButtonClick()}>
+                                    </>
+                                <Button classname='max-w-md mx-auto' onClick={e => handleButtonClick()}>
                                     Continue to Shipping
                                 </Button>
                             </>

@@ -12,20 +12,8 @@ const CheckOutForm = lazy(() => import('./CheckOutForm'))
 const stripePromise = loadStripe('pk_test_51LAu75JVJ8U3GhGkLef2bRGnsgyzJSEbvS13F88rw2c18b1pi7R94tei5tx50vQjQVv2tpVY8ELhONt4W9V3o0cC005eUl1hXS')
 
 
-interface input {
-  card_number: string,
-  cvv: string,
-  expiry_date: string
-}
 
-const initState = {
-  card_number: '',
-  cvv: "",
-  expiry_date: ""
-
-}
-
-const ThirdSection = ({ total }: { total: number }) => {
+const ThirdSection = ({ total, isSecondDone }: { total: number, isSecondDone: boolean }) => {
 
   const [clientSecret, setClientSecret] = useState("");
   const [postTotal, { isLoading }] = usePostTotalMutation()
@@ -107,28 +95,38 @@ const ThirdSection = ({ total }: { total: number }) => {
   const options: StripeElementsOptions = {
     clientSecret,
     appearance,
-    // fonts: [{
-    //   // cssSrc: "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700"
-    // }],
+    fonts: [{
+      cssSrc: "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700"
+    }],
 
   };
 
   return (
-    <CheckoutSectionLayout number={3} title='Payment Details' done={false} >
-      <div className='mt-7 pl-2 space-y-7'>
+    <CheckoutSectionLayout number={3} title='Payment Details' done={false}  >
 
+      <>
+        {isSecondDone && clientSecret && (
+          <>
+            <p className='text-xs text-red-300 ml-2' >
+              You won't be able to edit these details once the button is clicked !!!
+            </p>
+            <div className='mt-7 pl-2 space-y-7'>
 
-        {clientSecret && (
+              <Elements options={options} stripe={stripePromise}>
+                <Suspense fallback={<div>Loading....</div>}>
 
-          <Elements options={options} stripe={stripePromise}>
-            <Suspense fallback={<div>Loading....</div>}>
-
-              <CheckOutForm />
-            </Suspense>
-          </Elements>
+                  <CheckOutForm />
+                  <Button classname='max-w-md mx-auto' onClick={() => { }}>
+                    Place Order
+                  </Button>
+                </Suspense>
+              </Elements>
+            </div>
+          </>
         )}
 
-      </div>
+      </>
+
     </CheckoutSectionLayout>
   )
 }

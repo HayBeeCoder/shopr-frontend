@@ -30,6 +30,7 @@ const Product = ({ item }: Props) => {
                     {
                         item.color.map((color, index) => (
                             <button className={` p-1 rounded-full border-[1px] border-none border-primary-800 `}
+                                key={index}
                                 onClick={(e) => {
 
                                     e.preventDefault()

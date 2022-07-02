@@ -20,13 +20,13 @@ const Hero = () => {
 
     useEffect(() => {
         // document.addEventListener("DOMContentLoaded", function () {
-console.log("document loaded completely")
+// console.log("document loaded completely")
             let mobileSize2 = window.matchMedia("(max-width: 767px)")
-            console.log(mobileSize2)
+            // console.log(mobileSize2)
             function display(mobileSize2: MediaQueryList) {
-                console.log("Hey! successfully entered this function.")
+                // console.log("Hey! successfully entered this function.")
                 if (mobileSize2.matches) {
-                    console.log("This is a mobile device!")
+                    // console.log("This is a mobile device!")
                     // if(mobileRef.current?.getAttribute("video-src")){
 
                     mobileRef.current?.setAttribute("poster", mobileRef.current?.getAttribute("video-poster") as string)
@@ -35,7 +35,7 @@ console.log("document loaded completely")
                     // mobileRef.current?.removeAttribute("video-src")
                     // }
                 } else {
-                    console.log("This is a desktop device!")
+                    // console.log("This is a desktop device!")
                     desktopRef.current?.setAttribute("poster", desktopRef.current?.getAttribute("video-poster") as string)
                     desktopRef.current?.setAttribute('src', desktopRef.current?.dataset.src as string)
                     desktopRef?.current?.load()

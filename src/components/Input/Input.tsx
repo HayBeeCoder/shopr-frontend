@@ -8,13 +8,14 @@ interface Props {
     // icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>,
     type: "text"|"password",
     value: string,
+    showRedBorder: boolean
 
 
 }
 
 let inputType:string
 
-const Input:React.FC<Props> = ({placeholder,label,labelFor,children ,type , handleChange , value} ) => {
+const Input:React.FC<Props> = ({placeholder,label,labelFor,children ,type , handleChange , value , showRedBorder} ) => {
 
 const handleEyesClick = (e: React.FormEvent) => {
   const previousSibling = e.currentTarget.previousSibling as HTMLInputElement
@@ -40,13 +41,13 @@ const handleEyesClick = (e: React.FormEvent) => {
       name= {labelFor}
        type={type}
         placeholder={placeholder}
-         className='outline-none p-3 pr-10 border-solid border-[1px] border-secondary-600 rounded-md  block text-xs w-full focus:outline-none focus:border-primary-800 ' 
+         className={`outline-none p-3 pr-10 border-solid border-[1px]  rounded-md  block text-xs w-full focus:outline-none focus:border-primary-800 ${showRedBorder ? "border-red-400" : "border-secondary-600"}` }
          onChange={e => handleChange(e)}
          value={value}/>
       
       {
           children && (
-            <button className='text-[32px] absolute right-0 top-1/2 -translate-y-1/2  px-1' type='button' onClick={handleEyesClick} > 
+            <button className='text-[32px] absolute right-0 top-1/2 -translate-y-1/2  px-1' type='button' onClick={handleEyesClick} tabIndex={-1}> 
             {children}
           </button>
           )

@@ -12,19 +12,19 @@ interface Props {
   // handleChange: (e: React.FormEvent) => void,
   // icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>,
   // type: "text" | "password",
-  // value: string,
+  value: string,
 
 
 }
 
-const DropdownInput: React.FC<Props> = ({ label, labelFor, children, selectref, handleChange }) => {
+const DropdownInput: React.FC<Props> = ({ label, labelFor, children, selectref, handleChange,value }) => {
   return (
     <div>
       <label htmlFor={labelFor} className='text-left text-xs inline-block w-full '>
         {label}
         <p className='text-left relative  mt-[0.25rem]'>
           <select
-
+            value={value}
             id={labelFor}
             name={labelFor}
             // name={labelFor}
@@ -35,7 +35,7 @@ const DropdownInput: React.FC<Props> = ({ label, labelFor, children, selectref, 
           >
             {children}
           </select>
-          <button className=' absolute right-0 top-1/2 -translate-y-1/2  p-3' type='button' >
+          <button className=' absolute right-0 top-1/2 -translate-y-1/2  p-3' type='button' tabIndex={-1} >
 
             <>
 

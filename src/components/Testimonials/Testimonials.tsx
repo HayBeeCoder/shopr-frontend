@@ -60,7 +60,7 @@ const Testimonials = () => {
                   
                     <div className='flex flex-col'>
                         {
-                            TESTIMONIALS.map((testimonial,index) =>   <Ratings rating={testimonial.ratings} shouldShow={count == index} /> )
+                            TESTIMONIALS.map((testimonial,index) =>   <Ratings rating={testimonial.ratings} shouldShow={count == index} key={index} /> )
                         }    
 
                          {/* <Ratings rating={4} count={count}/> */}

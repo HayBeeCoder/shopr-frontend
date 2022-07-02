@@ -84,7 +84,7 @@ const SignUp = () => {
       // console.log(user)
       // push('/')
     } catch (err) {
-       console.log("error: ", err)
+      //  console.log("error: ", err)
       // toast({
       //   status: 'error',
       //   title: 'Error',

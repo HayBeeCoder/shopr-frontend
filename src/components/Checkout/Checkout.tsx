@@ -24,6 +24,7 @@ const Checkout = () => {
 
   const navigate = useNavigate()
   const { pathname } = useLocation()
+  const [isSecondDone,setIsSecondDone] = useState(false)
   const [open, setOpen] = useState(false)
   const [done, setDone] = useState(false)
   const userObject = useAppSelector(state => state.auth)
@@ -141,7 +142,7 @@ const Checkout = () => {
               <span>${total}</span>
             </p>
 
-            <div className='space-y-2 my-4'>
+            {/* <div className='space-y-2 my-4'>
 
               <Button classname='' disabled={!done}>
                 Place Order
@@ -149,7 +150,7 @@ const Checkout = () => {
               <p className='text-center font-light text-xs'>
                 Psst! get it now before it sells out.
               </p>
-            </div>
+            </div> */}
           </div>
 
         </div>
@@ -166,13 +167,15 @@ const Checkout = () => {
           unEdit={unEdit}
         />
         <SecondSection
-      
-         edit= {edit}
+        isSecondDone={isSecondDone}
+        setIsSecondDone = {setIsSecondDone}
+      //THIS EDIT is value for the first section 
+          edit= {edit}
          isEmailCorrect= {isEmailCorrect}
          />
 
 
-        <ThirdSection total={total} />
+        <ThirdSection total={total} isSecondDone={isSecondDone} />
         <div>
 
           {/* {clientSecret && (
