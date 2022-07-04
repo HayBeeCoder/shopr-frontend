@@ -2,7 +2,7 @@ import React, { useState, useLayoutEffect, useEffect, useRef } from 'react'
 import Button from '../Button';
 import Mobile from "../../assets/videos/mobile.mp4"
 import Desktop from "../../assets/videos/desktop.mp4"
-import PosterMobile from "../../assets/images/men-shoes.jpg"
+import PosterMobile from "../../assets/images/poster-mobile.jpg"
 import PosterDesktop from "../../assets/images/twowomen.jpg"
 
 
