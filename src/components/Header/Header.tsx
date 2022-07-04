@@ -64,13 +64,13 @@ const Header: React.FC<Props> = ({ pathname }) => {
                     <Overlay menuOpen={menuOpen} handleClick={handleCloseClick} />
 
 
-                    <Maybe test={pathname != "/checkout"}>
+                    {/* <Maybe test={pathname != "/checkout"}> */}
 
-                         <div className="md:hidden md:w-[330px] md:gap-10">
+                         <div className={`md:hidden md:w-[330px] md:gap-10  ${pathname == "/checkout" ? " scale-0" : "scale-100"}`}>
                               <Hamburger handleClick={handleHamburgerClick} />
 
                          </div>
-                    </Maybe>
+                    {/* </Maybe> */}
 
                     {/* <span className="bg-orange-400"> adsfjklsda</span> */}
 
