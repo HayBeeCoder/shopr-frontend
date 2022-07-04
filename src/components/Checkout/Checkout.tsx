@@ -24,11 +24,11 @@ const Checkout = () => {
 
   const navigate = useNavigate()
   const { pathname } = useLocation()
-  const [isSecondDone,setIsSecondDone] = useState(false)
+  const [isSecondDone, setIsSecondDone] = useState(false)
   const [open, setOpen] = useState(false)
   const [done, setDone] = useState(false)
   const userObject = useAppSelector(state => state.auth)
-  const [showEmailError,setShowEmailError] = useState(false)
+  const [showEmailError, setShowEmailError] = useState(false)
   const cartProducts = useAppSelector(state => state.cart)
   const [email, setEmail] = useState(userObject?.user?.email ? userObject?.user.email : '')
   const [isEmailCorrect, setIsEmailCorrect] = useState(userObject?.user?.email ? true : false)
@@ -59,8 +59,8 @@ const Checkout = () => {
 
   }
 
-  const unEdit = () =>{
-     setEdit(true)
+  const unEdit = () => {
+    setEdit(true)
   }
 
 
@@ -69,7 +69,7 @@ const Checkout = () => {
   const handleEdit = (e: React.FormEvent) => {
     const { value } = e.currentTarget as HTMLInputElement
     if (REGEX_EMAIL.test(value)) {
-      
+
       setIsEmailCorrect(true)
     } else {
       setIsEmailCorrect(false)
@@ -165,14 +165,19 @@ const Checkout = () => {
           isEmailCorrect={isEmailCorrect}
           handleButtonClick={handleFirstButtonClick}
           unEdit={unEdit}
-        />
+        >
+          {userObject?.user?.email == ''
+            ? <p className=' text-[10px] pl-2 -mt-1 text-primary-100'>Already have an accout? <span className='underline text-primary-800'>Login</span></p>
+            : <span></span>
+          }
+        </FirstSection>
         <SecondSection
-        isSecondDone={isSecondDone}
-        setIsSecondDone = {setIsSecondDone}
-      //THIS EDIT is value for the first section 
-          edit= {edit}
-         isEmailCorrect= {isEmailCorrect}
-         />
+          isSecondDone={isSecondDone}
+          setIsSecondDone={setIsSecondDone}
+          //THIS EDIT is value for the first section 
+          edit={edit}
+          isEmailCorrect={isEmailCorrect}
+        />
 
 
         <ThirdSection total={total} isSecondDone={isSecondDone} />

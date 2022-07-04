@@ -11,6 +11,7 @@ import { ReactComponent as Eyes } from '../../assets/svgs/eyes.svg'
 
 import { useDispatch } from "react-redux"
 import { useSignupMutation } from "../../app/services/api"
+import { PASSWORD_MESSAGE } from '../../constants'
 
 interface IInfo {
   // first_name: string,
@@ -18,15 +19,22 @@ interface IInfo {
   username: string,
   email: string,
   password: string
-  
+
 }
 
-const INFO = {
+
+const INFO:IInfo = {
   // first_name: '',
   // last_name: '',
   username: '',
   email: '',
   password: ''
+} 
+
+const ERROR = {
+  username: "Enter a valid username",
+  email: "Enter a valid email",
+  password: PASSWORD_MESSAGE
 }
 
 interface responseA {
@@ -38,65 +46,86 @@ interface responseB {
 
 const SignUp = () => {
   const dispatch = useDispatch()
+  const [showError, setShowError] = useState(false)
+  const [errOnInitialSubmit ,SetErrorOnInitialSubmit] = useState(true)
   const [signup, { isLoading }] = useSignupMutation()
   const [info, setInfo] = useState<IInfo>(INFO)
   const [userExists, setUserExists] = useState(false)
   const [successfulSignUp, setsucessfulSignUp] = useState(false)
   //if error object properties is an empty string , then there is no error in input
   const [error, setError] = useState<IInfo>(INFO)
+  
   // console.log(info)
-  const handleChange = (e: React.FormEvent) => {
-
+  const handleChange = (e: React.FormEvent) => {  
+    if(errOnInitialSubmit) SetErrorOnInitialSubmit(false)
     let { name, value } = e.target as HTMLInputElement
-    setError({ ...error, [name]: fieldValidator(name, value) })
+    let errorValue =  fieldValidator(name, value)
+    e.target.addEventListener('blur' ,function(){
+      // if(error[name] == "") setShowError()
+    } )
+
+
+
+    if(errorValue ==  "" && errorValue.length === 0){
+      setShowError(true)
+    }else setShowError(false)
+    e.preventDefault()
+    setError({ ...error, [name]: errorValue })
     setInfo({ ...info, [name]: value })
 
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    const {username , email,password} = info
-    const formState = {
-      username,
-      email,
-      password
-    }
+    if(errOnInitialSubmit) setError(ERROR)
+    if (!validateForm(error, info)) {
+      setShowError(true)
+    } else {
 
-
-    try {
-      type User = | { message: string } | { err: string }
-      const user: { message?: string, err?: string } = await signup(formState).unwrap()
-
-      if (user.message) {
-        // document.body.append(user.message)
-        setsucessfulSignUp(true)
-// console.log(user.message)
-
-        setUserExists(false)
-      } else if (user?.err) {
-        setsucessfulSignUp(false)
-        setUserExists(true)
+      setShowError(false)
+      const { username, email, password } = info
+      const formState = {
+        username,
+        email,
+        password
       }
 
 
+      try {
+        type User = | { message: string } | { err: string }
+        const user: { message?: string, err?: string } = await signup(formState).unwrap()
 
-      // dispatch(setCredentials(user))
-      // console.log(user)
-      // push('/')
-    } catch (err) {
-      //  console.log("error: ", err)
-      // toast({
-      //   status: 'error',
-      //   title: 'Error',
-      //   description: 'Oh no, there was an error!',
-      //   isClosable: true,
-      // })
+        if (user.message) {
+          // document.body.append(user.message)
+          setsucessfulSignUp(true)
+          // console.log(user.message)
+
+          setUserExists(false)
+        } else if (user?.err) {
+          setsucessfulSignUp(false)
+          setUserExists(true)
+        }
+
+
+
+        // dispatch(setCredentials(user))
+        // console.log(user)
+        // push('/')
+      } catch (err) {
+        //  console.log("error: ", err)
+        // toast({
+        //   status: 'error',
+        //   title: 'Error',
+        //   description: 'Oh no, there was an error!',
+        //   isClosable: true,
+        // })
+      }
+
+      // console.log(fieldData)
+
+
+
     }
-
-    // console.log(fieldData)
-
-
-
   }
 
 
@@ -125,29 +154,78 @@ const SignUp = () => {
             :
             <>
               {/* <div className='flex flex-col gap-3 md:flex-row md:gap-4 w-full '> */}
-                {/* <Input label='First Name' labelFor='first_name' placeholder='John' type='text' value={info.first_name} handleChange={handleChange} /> */}
-                {/* <Input label='Last Name' labelFor='last_name' placeholder='Doe' type='text' value={info.last_name} handleChange={handleChange} /> */}
+              {/* <Input label='First Name' labelFor='first_name' placeholder='John' type='text' value={info.first_name} handleChange={handleChange} /> */}
+              {/* <Input label='Last Name' labelFor='last_name' placeholder='Doe' type='text' value={info.last_name} handleChange={handleChange} /> */}
 
               {/* </div> */}
-                <Input label='Username' labelFor='username' placeholder='Doe426' type='text' value={info.username} handleChange={handleChange} />
+          <div>
+
+              <Input
+                label='Username'
+                labelFor='username'
+                placeholder='Doe426'
+                type='text'
+                value={info.username}
+                handleChange={handleChange}
+                showRedBorder={error.username != ''}
+                />
+                    {error.username != '' && (<p className='text-left text-[10px] text-red-400 mt-1'> {error.username} </p>)}
+                                          
+                </div>
+
 
               {/* <dniv className=' bg-green-400 flex jus'> */}
+          <div>
 
-              <Input label='Email' labelFor='email' placeholder='JohnDoe@gmail.com' type='text' value={info.email} handleChange={handleChange} >
+              <Input
+                showRedBorder={error.email != ''}
+                label='Email'
+                labelFor='email'
+                placeholder='JohnDoe@gmail.com'
+                type='text'
+                value={info.email}
+                handleChange={handleChange} >
                 <Email />
               </Input>
-              <Input label='Password' labelFor='password' placeholder='********' type='password' value={info.password} handleChange={handleChange} >
+              { error.email != '' && (<p className='text-left text-[10px] text-red-400 mt-1]'> {error.email} </p>)}
+               
+                  </div>
 
-                <Eyes />
-              </Input>
+
+              <div>
+                <Input
+                  showRedBorder={error.password != ''}
+                  label='Password'
+                  labelFor='password'
+                  placeholder='********'
+                  type='password'
+                  value={info.password}
+                  handleChange={handleChange} >
+
+                  <Eyes />
+                </Input>
+
+                {/* Instruction for password format */}
+                 {
+                   error.password == '' &&
+                   <p className='text-[10px] text-left text-primary-800/50 tracking-wide mt-1'>{PASSWORD_MESSAGE}</p>
+                 }
+                {/* Error message when user goes against what's required for a valid password */}
+                {error.password != '' && 
+
+                (<p className='text-left text-[10px] text-red-400 mt-1'> {error.password} </p>)
+                }
+               
+              </div>
+
 
               <div className='mt-7'>
 
-                <Button disabled={!validateForm(error, info)}>
-                  {isLoading ? "...." : "Sign Up"}
+                <Button>
+                  {isLoading ? "....Signing you up" : "Sign Up"}
                 </Button>
 
-                {userExists && <p className='text-[#DA3B39]'>User with entered email exists already!</p>}
+                {userExists && <p className='text-[10px] mt-1 text-red-400'>User with entered email exists already!</p>}
                 <p className='text-xs mt-1 text-primary-100'>Already have an account?
                   <Link to="/auth/login">
                     <span className='underline text-primary-800'> Log In</span>

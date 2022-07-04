@@ -3,7 +3,7 @@ import Input from '../Input'
 import Button from '../Button'
 import { REGEX_EMAIL } from '../../constants'
 
-const FooterSignUp = () => {
+const FooterSignUp = ({}) => {
   const [input, setInput] = useState("")
   const [showError, setShowError] = useState(false)
   const [edit, setEdit] = useState(true)
@@ -40,7 +40,9 @@ const FooterSignUp = () => {
             type='text'
             value={input}
             labelFor="email"
+            showRedBorder={showError}
             handleChange={handleChange} />
+            
           {showError && <p className='text-red-400 text-xs mt-[4px]'>Invalid Email!</p>}
         </div>
 

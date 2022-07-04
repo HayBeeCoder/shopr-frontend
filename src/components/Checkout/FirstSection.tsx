@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Children } from 'react'
 import Input from '../Input'
 import { ReactComponent as Email } from '../../assets/svgs/email.svg'
 import Button from '../Button'
@@ -14,9 +14,10 @@ interface Props {
     handleButtonClick: () => void
     unEdit: () => void
     showError: boolean
+    children: JSX.Element
 }
 
-const FirstSection = ({ value, edit, handleEdit, isEmailCorrect , unEdit, handleButtonClick, showError}: Props) => {
+const FirstSection = ({ value, edit, handleEdit, isEmailCorrect , unEdit, handleButtonClick, showError,children}: Props) => {
     
 
 
@@ -28,7 +29,7 @@ const FirstSection = ({ value, edit, handleEdit, isEmailCorrect , unEdit, handle
             <React.Fragment>
 
 
-                <div className=' my-3 space-y-5  pl-2'>
+                <div className=' my-3  pl-2'>
                     {
                         isEmailCorrect && edit == false ?
                         <div className='flex justify-between '>
@@ -37,7 +38,7 @@ const FirstSection = ({ value, edit, handleEdit, isEmailCorrect , unEdit, handle
                         </div>
                         :
                         <>
-                                <p className=' text-[10px] pl-2 -mt-1 text-primary-100'>Already have an accout? <span className='underline text-primary-800'>Login</span></p>
+                         {children}
                                 <>
 
                                 <Input
@@ -51,7 +52,7 @@ const FirstSection = ({ value, edit, handleEdit, isEmailCorrect , unEdit, handle
                                 >
                                     <Email />
                                 </Input>
-                                <p className='text-red-400 text-xs mt-[4px]'>{showError && !isEmailCorrect && "Invalid Email!"}</p>
+                                <p className='text-red-400 text-[10px] mt-1'>{showError && !isEmailCorrect && "Invalid Email!"}</p>
                                     </>
                                 <Button classname='max-w-md mx-auto' onClick={e => handleButtonClick()}>
                                     Continue to Shipping

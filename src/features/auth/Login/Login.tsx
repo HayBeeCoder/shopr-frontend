@@ -15,7 +15,7 @@ import { useDispatch } from "react-redux"
 
 interface IInfo {
 
-username: string,
+  username: string,
   password: string
 }
 
@@ -31,7 +31,7 @@ const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [login, { isLoading }] = useLoginMutation()
-  const [badInput,setBadInput] = useState<boolean>(false)
+  const [badInput, setBadInput] = useState<boolean>(false)
   const [info, setInfo] = useState<IInfo>(INFO)
   const [error, setError] = useState<IInfo>(INFO)
   //if error object properties is an empty string , then there is no error in input
@@ -47,7 +47,7 @@ const Login = () => {
   // const handleSubmit = 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-const {username,password} = info
+    const { username, password } = info
     const formState = {
       username,
       password
@@ -59,16 +59,16 @@ const {username,password} = info
       // console.log(user)
       // console.log(user)
       dispatch(setCredentials(user))
-      localStorage.setItem("token" , user?.token)
+      localStorage.setItem("token", user?.token)
       //  console.log(user)
-       navigate('/')
+      navigate('/')
 
     } catch (err: any) {
-      if(err.status == 400){
+      if (err.status == 400) {
         setBadInput(true)
-      }else console.log(err)
+      } else console.log(err)
       // if()
-  
+
     }
 
     // const login = async () => {
@@ -84,7 +84,7 @@ const {username,password} = info
         <h1 className='text-3xl font-bold leading-none mb-1'>Good to see you again.</h1>
         <p className='text-xs text-primary-100 leading-none'>Please login to your account</p>
       </div>
-      <form  className='mx-auto w-11/12 md:w-9/12 flex flex-col items-stretch gap-3' onSubmit={handleSubmit}>
+      <form className='mx-auto w-11/12 md:w-9/12 flex flex-col items-stretch gap-3' onSubmit={handleSubmit}>
         {/* <div> */}
         {/* <label htmlFor="first_name text-xs text-left">
           <p className='text-left text-xs'>First Name</p>
@@ -106,25 +106,53 @@ const {username,password} = info
 
       </div> */}
         {/* <div className=' bg-green-400 flex jus'> */}
+        <div>
 
-        <Input label='Username' labelFor='username' placeholder='Doe426' type='text' value={info.username} handleChange={handleChange} >
-          {/* <Email /> */}
-        </Input>
+          <Input
+            label='Username'
+            labelFor='username'
+            placeholder='Doe426'
+            type='text'
+            value={info.username}
+            handleChange={handleChange}
+            showRedBorder={false}
+          />
+
+        </div>
+
+
+        {/* <Email /> */}
+
         {/* </div> */}
-        <Input label='Password' labelFor='password' placeholder='********' type='password' value={info.password} handleChange={handleChange} >
+        <div>
 
-          <Eyes />
-        </Input>
+          <Input
+            label='Password'
+            labelFor='password'
+            placeholder='********'
+            type='password'
+            value={info.password}
+            handleChange={handleChange}
+            showRedBorder={false}
+          >
+            {/* <Input label='Password' labelFor='password' placeholder='********' type='password' value={info.password} handleChange={handleChange} > */}
+
+            <Eyes />
+          </Input>
+          {/* </Input> */}
+        </div>
+
 
         <div className='mt-3'>
           <Button>
             {isLoading ? "...Loggin In" : "Log In"}
           </Button>
           {
-          badInput 
-          &&
-          <p className='text-[#DA3B39]'>:&#40; Seems something is wrong with entered details!</p>
-           }
+            badInput
+            &&
+
+            <p className='text-[#DA3B39] text-xs'>:&#40; Seems something is wrong with your inputs!</p>
+          }
           <p className='text-xs mt-1 font-light text-primary-100'>Do not have an account?
             <Link to="/auth/signup">
               <span className='underline text-primary-800'> Sign Up</span>

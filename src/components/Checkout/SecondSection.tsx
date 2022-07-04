@@ -202,7 +202,7 @@ const SecondSection = ({ edit, isEmailCorrect, isSecondDone, setIsSecondDone }: 
                                                     
 
                                                 />
-                                                {showError && err.first_name && (<p className='text-red-400 text-xs mt-[4px]'> No Input!</p>)}
+                                                {showError && err.first_name && (<p className='text-red-400 text-[10px] mt-1'> No Input!</p>)}
 
                                             </div>
                                             <div className='flex-grow'>
@@ -219,7 +219,7 @@ const SecondSection = ({ edit, isEmailCorrect, isSecondDone, setIsSecondDone }: 
 
 
                                                 />
-                                                {showError && err.last_name && (<p className='text-red-400 text-xs mt-[4px]'> No Input!</p>)}
+                                                {showError && err.last_name && (<p className='text-red-400 text-[10px] mt-1'> No Input!</p>)}
                                             </div>
                                         </div>
                                         <div>
@@ -238,7 +238,7 @@ const SecondSection = ({ edit, isEmailCorrect, isSecondDone, setIsSecondDone }: 
                                                     return <option value={name} key={index} className="w-full">{name}</option>;
                                                 })}
                                             </DropdownInput>
-                                            {showError && err.country && (<p className='text-red-400 text-xs mt-[4px]'> Select a country please!</p>)}
+                                            {showError && err.country && (<p className='text-red-400 text-[10px] mt-1'> Select a country please!</p>)}
                                         </div>
                                         <div>
                                             <DropdownInput
@@ -256,7 +256,7 @@ const SecondSection = ({ edit, isEmailCorrect, isSecondDone, setIsSecondDone }: 
                                                     })
                                                 }
                                             </DropdownInput>
-                                            {showError && err.state && (<p className='text-red-400 text-xs mt-[4px]'> Select a state please!</p>)}
+                                            {showError && err.state && (<p className='text-red-400 text-[10px] mt-1'> Select a state please!</p>)}
                                         </div>
                                         <div className='flex gap-8'>
                                             <div className='flex-grow'>
@@ -272,7 +272,7 @@ const SecondSection = ({ edit, isEmailCorrect, isSecondDone, setIsSecondDone }: 
 
                                                 />
 
-                                                {showError && err.city && (<p className='text-red-400 text-xs mt-[4px]'> No Input!</p>)}
+                                                {showError && err.city && (<p className='text-red-400 text-[10px] mt-1'> No Input!</p>)}
 
                                             </div>
                                             <div className="flex-grow">
@@ -287,7 +287,7 @@ const SecondSection = ({ edit, isEmailCorrect, isSecondDone, setIsSecondDone }: 
                                                     value={input.address}
 
                                                 />
-                                                {showError && err.address && (<p className='text-red-400 text-xs mt-[4px]'> No Input!</p>)}
+                                                {showError && err.address && (<p className='text-red-400 text-[10px] mt-1'> No Input!</p>)}
                                             </div>
                                         </div>
                                         <Button classname='max-w-md mx-auto' onClick={handleSubmit}>
