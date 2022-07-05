@@ -21,7 +21,7 @@ const Hero = () => {
     useEffect(() => {
         // document.addEventListener("DOMContentLoaded", function () {
 // console.log("document loaded completely")
-            let mobileSize2 = window.matchMedia("(max-width: 767px)")
+            let mobileSize2 = window.matchMedia("(max-width: 900px)")
             // console.log(mobileSize2)
             function display(mobileSize2: MediaQueryList) {
                 // console.log("Hey! successfully entered this function.")
@@ -57,7 +57,7 @@ const Hero = () => {
 
 
     return (
-        <div className={`md:flex-grow flex-shrink-0 bg-white relative overflow-hidden w-full aspect-[9/16] md:h-screen`}>
+        <div className={` flex-shrink-0 bg-white relative overflow-hidden w-full aspect-[9/16] lg:aspect-[16/9] `}>
 
             {/* //correct code is below */}
             {/* <>
@@ -74,8 +74,8 @@ const Hero = () => {
 
 
             <>
-                <div className='w-full h-full lg:absolute lg:top-0 lg:left-0 lg:right-0 lg:bottom-0 block md:h-screen md:object-contain lg:-translate-y-1/4 md:aspect-video  bg-secondary-100'>
-                    <video ref={desktopRef} data-src="https://res.cloudinary.com/abasscodes/video/upload/v1656449343/shopr/homepage-collections/mobile_xv66ic.mp4" autoPlay muted loop className='hidden md:block  w-full' playsInline video-poster={PosterDesktop}>
+                <div className='w-full h-full md:absolute md:top-0 md:left-0 md:right-0 md:bottom-0 block md:object-contain    bg-secondary-100'>
+                    <video ref={desktopRef} data-src="https://res.cloudinary.com/abasscodes/video/upload/v1656449343/shopr/homepage-collections/mobile_xv66ic.mp4" autoPlay muted loop className='hidden lg:block  w-full' playsInline video-poster={PosterDesktop}>
                         {/* <source type="video/mp4" video-src="https://res.cloudinary.com/abasscodes/video/upload/v1656449343/shopr/homepage-collections/mobile_xv66ic.mp4" /> */}
                     </video>
                     <video ref={mobileRef}  data-src="https://res.cloudinary.com/abasscodes/video/upload/v1656449362/shopr/homepage-collections/desktop_g3bwzb.mp4" autoPlay muted loop width="400" height="720" className='video w-full' playsInline video-poster={PosterMobile}>

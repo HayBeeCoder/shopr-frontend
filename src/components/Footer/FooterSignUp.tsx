@@ -28,7 +28,7 @@ const FooterSignUp = ({}) => {
 
   return (
     <div>
-      <p className='text-xl mb-4 leading-none'>Sign up to get latest updates on available products</p>
+      <p className='text-xl mb-4 leading-none'>Subscribe to our newsletter to get latest updates on available products</p>
       {
         edit ? 
       <form action="" onSubmit={handleOnsubmit} className="space-y-3">
@@ -46,7 +46,7 @@ const FooterSignUp = ({}) => {
           {showError && <p className='text-red-400 text-xs mt-[4px]'>Invalid Email!</p>}
         </div>
 
-        <Button>Sign Up</Button>
+        <Button>Subscribe</Button>
       </form> :
       <p className='text-xs font-semibold'> You have successfully subscribed :)</p>
       }

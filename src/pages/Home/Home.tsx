@@ -10,7 +10,7 @@ import NewProducts from '../../components/NewProducts'
 const Home = () => {
   return (
     <>
-      <div className='flex flex-col   md:h-screen overflow-hidden'>
+      <div className='flex flex-col   md:min-h-screen overflow-hidden'>
         <Header />
         <Hero />
       </div>
