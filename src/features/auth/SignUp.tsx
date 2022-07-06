@@ -13,6 +13,10 @@ import { useDispatch } from "react-redux"
 import { useSignupMutation } from "../../app/services/api"
 import { PASSWORD_MESSAGE } from '../../constants'
 
+
+// interface UserResponse{
+//   _id: string
+// }
 interface IInfo {
   // first_name: string,
   // last_name: string,
@@ -54,6 +58,7 @@ const SignUp = () => {
   const [successfulSignUp, setsucessfulSignUp] = useState(false)
   //if error object properties is an empty string , then there is no error in input
   const [error, setError] = useState<IInfo>(INFO)
+  const [serverError, setServerError] = useState("")
   
   // console.log(info)
   const handleChange = (e: React.FormEvent) => {  
@@ -89,44 +94,71 @@ const SignUp = () => {
         email,
         password
       }
-
-
+      
+      
       try {
-        type User = | { message: string } | { err: string }
-        const user: { message?: string, err?: string } = await signup(formState).unwrap()
+        // type User = | { message: string } | { err: string }
+        console.log(formState)
+        const user: { data?: {_id: string} , err?: string } = await signup(formState).unwrap()
+        if(user.err){
+          // console.log(user.err)
+              setServerError(user.err)
+        }else{
 
-        if (user.message) {
+          // const {_id} = user?.data as
+          
+        if (user?.data?._id) {
           // document.body.append(user.message)
-          setsucessfulSignUp(true)
-          // console.log(user.message)
+          fetch("https://shopr-server.herokuapp.com/api/cart",
+          {
+      
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json;charset=utf-8'
+              },
+              body: JSON.stringify({userId: user?.data?._id,products: [] })
+          }
+          )
+          .then(res => res.json())
+          .then(data => {
 
+            // console.log(data)
+            setsucessfulSignUp(true)
+          })
+          // console.log(user.message)
+          
           setUserExists(false)
         } else if (user?.err) {
           setsucessfulSignUp(false)
           setUserExists(true)
         }
-
-
-
+        
+      }
+        
+        
         // dispatch(setCredentials(user))
         // console.log(user)
         // push('/')
-      } catch (err) {
+      } catch (err: any) {
+        // console.log(err )
+        if(err.status == 400){
+          setServerError(err.data.err)
+        }
         //  console.log("error: ", err)
         // toast({
-        //   status: 'error',
-        //   title: 'Error',
-        //   description: 'Oh no, there was an error!',
-        //   isClosable: true,
-        // })
+          //   status: 'error',
+          //   title: 'Error',
+          //   description: 'Oh no, there was an error!',
+          //   isClosable: true,
+          // })
+        }
+        
+        // console.log(fieldData)
+        
+        
+        
       }
-
-      // console.log(fieldData)
-
-
-
     }
-  }
 
 
   return (
@@ -224,7 +256,10 @@ const SignUp = () => {
                 <Button>
                   {isLoading ? "....Signing you up" : "Sign Up"}
                 </Button>
-
+                {
+                  serverError.length > 0 && serverError !== ''
+                  && <p className='text-[10px] mt-1 text-red-400'>{serverError}</p>
+                }
                 {userExists && <p className='text-[10px] mt-1 text-red-400'>User with entered email exists already!</p>}
                 <p className='text-xs mt-1 text-primary-100'>Already have an account?
                   <Link to="/auth/login">

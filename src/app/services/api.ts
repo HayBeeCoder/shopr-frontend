@@ -2,8 +2,13 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { url } from 'inspector'
 import NewProducts from '../../components/NewProducts'
 import { RootState } from '../store'
+
 import { IProduct } from "../../../types"
 
+
+interface Response{
+  _id: string
+}
 // interface NewProductsHome {
 //   _id: string,
 //   title: string,
@@ -91,7 +96,7 @@ export const api = createApi({
     protected: builder.mutation<{ message: string }, void>({
       query: () => 'protected',
     }),
-    signup: builder.mutation<{ message?: string, err?: string }, SignUpRequest>({
+    signup: builder.mutation<{ data?: {_id: string}, err?: string }, SignUpRequest>({
       query: (credentials) => ({
         url: '/users/',
         method: 'POST',
