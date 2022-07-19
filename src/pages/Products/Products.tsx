@@ -18,13 +18,7 @@ const Products = () => {
   const collections = category == "women" ? WomenCollections : MenCollections
   const { data, error, isLoading } = useGetProductsQuery(category as string)
   let [_, setSearchParams] = useSearchParams();
-//   console.log(searchParams.get("collection"))
 
-// console.log(data)
-
-  //the condition used in below expression becomes buggy , if category becomes non-binary
-  // console.log(collections)
-  // console.log(category)
 
   useEffect(() => {
     if (search == "") {
@@ -34,11 +28,7 @@ const Products = () => {
     }
 
   }, [isLoading, data])
-  // const 
-  // searchParams is a URLSearchParams object
-  // See https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParam
-  // let user = searchParams.get("user");
-
+ 
   const handleCollectionClick = (collection: string) => {
     setSearchParams({ collection })
     if(!isLoading && !error && data){
@@ -60,9 +50,9 @@ const Products = () => {
         </Link>
       </p>
       <h2 className='font-light text-2xl text-center my-1'>  {category && category?.slice(0, 1).toUpperCase() + category?.slice(1)}’s clothing & apparel</h2>
-      {/* Products CATEGORY : {category} */}
-      {/* ========================== */}
-      <div className='flex  scroll-smooth snap-center   md:grid grid-cols-5 my-10 gap-2 md:gap-3 remove-scrollbar overflow-x-scroll md:my-8' >
+
+      <div className='overflow-x-scroll  remove-scrollbar'>
+      <div className='flex  scroll-smooth snap-center    md:grid grid-cols-5 my-10 gap-2 md:gap-3 w-max md:my-8' >
 
         {
           collections.map((collection, index) => (
@@ -72,6 +62,7 @@ const Products = () => {
             </React.Fragment>
           ))
         }
+            </div>
 
       </div>
       {/* ==================================== */}

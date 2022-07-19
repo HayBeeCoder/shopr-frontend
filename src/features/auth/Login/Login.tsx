@@ -4,7 +4,7 @@ import Button from '../../../components/Button'
 import { Link, useNavigate } from 'react-router-dom'
 import Input from '../../../components/Input'
 
-import { useLoginMutation } from '../../../app/services/api'
+import { useGetCartQuery, useLoginMutation } from '../../../app/services/api'
 import { setCredentials } from '../authSlice'
 import { ReactComponent as Eyes } from '../../../assets/svgs/eyes.svg'
 
@@ -26,16 +26,18 @@ const INFO = {
 }
 
 
-
 const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const [userId,setUserId] = useState('')
+  // const {data} = userId != '' && useGetCartQuery(userId)
   const [login, { isLoading }] = useLoginMutation()
   const [badInput, setBadInput] = useState<boolean>(false)
   const [info, setInfo] = useState<IInfo>(INFO)
   const [error, setError] = useState<IInfo>(INFO)
   //if error object properties is an empty string , then there is no error in input
-
+  // console.log(data)
+  // console.log(useGetCartQuery(userId))
   const handleChange = (e: React.FormEvent) => {
 
     let { name, value } = e.target as HTMLInputElement
@@ -44,7 +46,7 @@ const Login = () => {
 
   }
 
-  // const handleSubmit = 
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     const { username, password } = info
@@ -52,12 +54,10 @@ const Login = () => {
       username,
       password
     }
-    // console.log(formState)
+
     try {
-      // console.log(formState)
       const user = await login(formState).unwrap()
-      // console.log(user)
-      // console.log(user)
+      
       dispatch(setCredentials(user))
       localStorage.setItem("token", user?.token)
       //  console.log(user)

@@ -1,18 +1,4 @@
-/* Helper functions used exlusively by 
-the files in this directory */
-interface Error {
-    // first_name: string,
-  username: string,
-  email: string,
-  password: string
-  }
-  
-  interface Account {
-    username: string,
-  // last_name: string,
-  email: string,
-  password: string
-  }
+
   
   function validateForm<T,U>(error: T,account: U): boolean  {
     let valid = true;

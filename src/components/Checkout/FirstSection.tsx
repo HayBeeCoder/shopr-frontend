@@ -54,7 +54,7 @@ const FirstSection = ({ value, edit, handleEdit, isEmailCorrect , unEdit, handle
                                 </Input>
                                 <p className='text-red-400 text-[10px] mt-1'>{showError && !isEmailCorrect && "Invalid Email!"}</p>
                                     </>
-                                <Button classname='max-w-md mx-auto' onClick={e => handleButtonClick()}>
+                                <Button classname='w-full mt-6' onClick={e => handleButtonClick()}>
                                     Continue to Shipping
                                 </Button>
                             </>

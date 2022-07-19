@@ -1,13 +1,12 @@
 
-import React, { lazy, Suspense, useEffect, useState } from 'react'
-import Input from '../Input'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import { CheckoutSectionLayout } from './CheckoutSectionLayout'
-import { ReactComponent as Card } from "../../assets/svgs/card.svg"
-import Button from '../Button'
 import { usePostTotalMutation } from '../../app/services/api'
 import { Appearance, loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
 import { StripeElementsOptions } from '@stripe/stripe-js'
+
+
 const CheckOutForm = lazy(() => import('./CheckOutForm'))
 const stripePromise = loadStripe('pk_test_51LAu75JVJ8U3GhGkLef2bRGnsgyzJSEbvS13F88rw2c18b1pi7R94tei5tx50vQjQVv2tpVY8ELhONt4W9V3o0cC005eUl1hXS')
 
@@ -17,9 +16,7 @@ const ThirdSection = ({ total, isSecondDone }: { total: number, isSecondDone: bo
 
   const [clientSecret, setClientSecret] = useState("");
   const [postTotal, { isLoading }] = usePostTotalMutation()
-
   const doPost = async () => { return await postTotal({ total }) }
-  // console.log(clientSecret)
 
 
   useEffect(() => {
@@ -27,6 +24,7 @@ const ThirdSection = ({ total, isSecondDone }: { total: number, isSecondDone: bo
     doPost()
       .then((response) => {
         const payload = response as { data: { clientSecret: string } }
+        console.log(response)
         setClientSecret(payload.data.clientSecret)
       })
 
@@ -101,6 +99,9 @@ const ThirdSection = ({ total, isSecondDone }: { total: number, isSecondDone: bo
 
   };
 
+
+  // console.log(options)
+
   return (
     <CheckoutSectionLayout number={3} title='Payment Details' done={false}  >
 
@@ -112,15 +113,13 @@ const ThirdSection = ({ total, isSecondDone }: { total: number, isSecondDone: bo
             </p>
             <div className='mt-7 pl-2 space-y-7'>
 
-              <Elements options={options} stripe={stripePromise}>
                 <Suspense fallback={<div>Loading....</div>}>
+              <Elements options={options} stripe={stripePromise}>
 
                   <CheckOutForm />
-                  <Button classname='max-w-md mx-auto' onClick={() => { }}>
-                    Place Order
-                  </Button>
-                </Suspense>
+                  
               </Elements>
+                </Suspense>
             </div>
           </>
         )}

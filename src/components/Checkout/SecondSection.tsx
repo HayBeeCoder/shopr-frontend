@@ -290,7 +290,7 @@ const SecondSection = ({ edit, isEmailCorrect, isSecondDone, setIsSecondDone }: 
                                                 {showError && err.address && (<p className='text-red-400 text-[10px] mt-1'> No Input!</p>)}
                                             </div>
                                         </div>
-                                        <Button classname='max-w-md mx-auto' onClick={handleSubmit}>
+                                        <Button classname='w-full ' onClick={handleSubmit}>
                                             Continue to Payment
                                         </Button>
                                     </>

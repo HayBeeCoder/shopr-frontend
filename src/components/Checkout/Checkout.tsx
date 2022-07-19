@@ -31,6 +31,7 @@ const Checkout = () => {
   const [showEmailError, setShowEmailError] = useState(false)
   const cartProducts = useAppSelector(state => state.cart)
   const [email, setEmail] = useState(userObject?.user?.email ? userObject?.user.email : '')
+  // console.log("email: ", email )
   const [isEmailCorrect, setIsEmailCorrect] = useState(userObject?.user?.email ? true : false)
   const [edit, setEdit] = useState(userObject?.user?.email ? false : true)
 
@@ -39,7 +40,7 @@ const Checkout = () => {
 
 
 
-  const totalProductsPrice = cartProducts.reduce((previousValue, currentItem) => (currentItem.quantity * currentItem?.product.price), 0)
+  const totalProductsPrice = cartProducts.reduce((previousValue, currentItem) => (currentItem.quantity * currentItem?.price), 0)
   const total = totalProductsPrice + tax + shipping_fee
   // console.log(email)
 
@@ -105,15 +106,15 @@ const Checkout = () => {
             {
               cartProducts.map(product => (
                 <ProductSideBar
-                  name={product.product.title}
+                  name={product.name as string}
                   color={product.color}
                   quantity={product.quantity}
-                  id={product.product._id}
+                  id={product.productId }
                   size={product.size as string}
-                  key={product.product._id}
+                  key={product.productId}
                   //   images property is a multidimensional array
-                  image={product.product.images[0][0]}
-                  price={product.product.price}
+                  image={product.image}
+                  price={product.price}
 
                 />
               ))

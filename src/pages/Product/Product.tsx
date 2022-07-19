@@ -2,83 +2,55 @@ import React, { useEffect, useState } from 'react'
 // import { useDispatch ,} from 'react-redux'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { Link, useLocation, useParams } from 'react-router-dom'
-import { useGetProductQuery, usePostCartMutation ,useGetCartQuery} from '../../app/services/api'
+import { useGetProductQuery} from '../../app/services/api'
 import Button from '../../components/Button'
 import SectionLayout from '../../components/SectionLayout'
 import ProductTemplate from "./ProductTemplate"
 import { add } from "../../features/cart/cartSlice"
 import { GetColorName } from 'hex-color-to-color-name'
-import { IProduct } from '../../../types'
 import Counter from '../../components/ProductSideBar.tsx/Counter'
-import { useSelector } from 'react-redux'
+import { capitalize } from '../../helpers/capitalize'
 
-
-const capitalize = (word: string) => {
-    const firstLetter = word.slice(0, 1)
-    return firstLetter.toUpperCase() + word.slice(1)
-}
 
 
 const Product = () => {
     const dispatch = useAppDispatch()
     const cartProducts = useAppSelector(state => state.cart)
-  
-    const [postCart,result] = usePostCartMutation()
-    const user = useAppSelector(state => state.auth)
-    // const {
-    //     data: post,
-    //     isFetching,
-    //     isLoading,
-    //   } = useGetPostQuery(user.user.)
-    // const [quantity,setQuantity] = useState(1)
     const [showCartModal, setShowCartModal] = useState(false)
     const [selectedIndex, setSelectedIndex] = useState(0)
     const [selectedSizeIndex, setSelectedSizeIndex] = useState<number | null>()
     const [selectedQuantity, setSelectedQuantity] = useState(1)
     const [showPlead, setShowPlead] = useState(false)
-console.log(user)
     const { id } = useParams()
     const { pathname } = useLocation()
 
-    const isProductInCart = cartProducts.some(product => product.product._id == id)
-    console.log(isProductInCart)
+    const isProductInCart = cartProducts?.some(product => product.productId == id)
+    
 
 
-    // console.log()
-    const handleCounterClick = (direction: "left" | "right") => {
-        
+
+    const handleCounterClick = (direction: "left" | "right") => {     
         if (direction == "left") {
-            // item quantity of zero is meaningless
             selectedQuantity > 1 && setSelectedQuantity((selectedQuantity) => selectedQuantity - 1)
         } else if (direction == "right") {
             setSelectedQuantity((selectedQuantity) => selectedQuantity + 1)
         }
     }
+
     const handleAddToCartButton = async (e: React.FormEvent) => {
         const payload = {
-            product: data?.data as IProduct,
+            name: data?.data.title,
+            productId: data?.data._id as string,
+            image: data?.data.images[0][0] as string,
             color: GetColorName(data?.data.color[selectedIndex] as string) as string,
             size: selectedSizeIndex as number,
-            quantity: selectedQuantity
+            quantity: selectedQuantity ,
+            price: data?.data.price as number 
         }
+        // console.log(data?.data.price as number )
         if (selectedSizeIndex != null) {
             setShowPlead(false)
             dispatch(add(payload))
-
-                // if(user.user){
-                // const userCart = await getCart()
-            //  }
-            // if(user.user){
-
-            //     const r = await postCart({
-            //         userId: user.user,
-            //         products: [
-            //             {
-            //                 color: data?.data.
-            //             }
-            //         ]
-            //     })
-            // }
             setShowCartModal(true)
 
         } else {
@@ -97,20 +69,14 @@ console.log(user)
         return () => clearInterval(timeout)
     }, [showCartModal])
 
-    const { data, error, isLoading } = useGetProductQuery(id as string)
-    // console.log(data)
-
+    const { data, isLoading } = useGetProductQuery(id as string)
     const handleSizeClick = (localSizeIndex: number) => {
         if (localSizeIndex != selectedSizeIndex) setSelectedSizeIndex(localSizeIndex)
         setShowPlead(false)
 
     }
 
-    // useEffect(() => {
-    //     if (!isLoading) (data?.data.images[0])
-    // }, [data])
-    // console.log(useParams())
-    // console.log(id)
+   
     return (
 
         <SectionLayout className='md:flex gap-3'>
@@ -124,8 +90,8 @@ console.log(user)
                     <>
                         <div className='w-full block md:w-2/3 flex-shrink-0  md:grid grid-cols-2 gap-4'>
                             {
-                                data?.data.images[selectedIndex]?.map(image => (
-                                    <div>
+                                data?.data?.images[selectedIndex]?.map((image,index) => (
+                                    <div key={index}>
                                         <img src={image} alt={data?.data.title} width="300" height="300" className="bg-orange-300 w-full " />
                                     </div>
                                 ))

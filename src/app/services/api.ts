@@ -11,7 +11,7 @@ interface Response{
 }
 // interface NewProductsHome {
 //   _id: string,
-//   title: string,
+//   title: string, 
 //   description: string,
 //   images: string[][],
 //   size: [{
@@ -25,13 +25,16 @@ interface Response{
 
 // }
 
+
+
 interface ICartItem {
+  name?:string,
   productId: string,
   image: string,
   price: number,
   color: string,
-  size: string,
-  quantity: number
+  size: string| number,
+  quantity: number 
 
 }
 interface ICart {
@@ -48,6 +51,7 @@ export interface User {
   first_name: string
   last_name: string
   email: string
+  _id: string
 }
 
 export interface UserResponse {
@@ -70,7 +74,8 @@ export interface SignUpRequest {
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://shopr-server.herokuapp.com/api/',
+    baseUrl: 'https://shopppr.herokuapp.com/api/',
+    // baseUrl: 'https://shopr-server.herokuapp.com/api/',
     // baseUrl: 'https://shopr-backend.herokuapp.com/api/',
     // baseUrl: 'https://shopr-server-main.herokuapp.com/api/',
     // baseUrl: 'http://localhost:6000/api/',
@@ -138,16 +143,20 @@ export const api = createApi({
 
       })
     }),
-    postCart: builder.mutation<{ data: ICart }, ICart>({
-      query: (body) => ({
-        url: `cart/`,
-        method: "POST",
-        body: body
+    updateCart: builder.mutation<{ data: ICartItem[] }, {id: string,body: {auth: {_id: string} ,data:{products: ICartItem[]}}}>({
+      query: ({id,body}) => ({
+
+        url: `cart/${id}`,
+        method: "PUT",
+        headers:{
+          "Access-Control-Allow-Origin":"*"
+        },
+        body
       })
     }),
-    getCart: builder.query<{message?: string,error?:string} , string>({
+    getCart: builder.query<{data: {_id:string,userId: string, products: ICartItem[]},error?:string} , string>({
       query: (id) => ({
-        url: `cart/${id}`,
+        url: `/cart/${id}`,
         method: "GET",
       })
     }),
@@ -168,7 +177,7 @@ export const {
   useProtectedMutation,
   useSignupMutation,
   useNewProductsHomeQuery,
-  usePostCartMutation ,
+  useUpdateCartMutation ,
   useGetCartQuery,
   usePostTotalMutation
 } = api

@@ -1,14 +1,3 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useLocation, useParams } from 'react-router-dom'
-import { useGetProductQuery } from '../../app/services/api'
-import SectionLayout from '../../components/SectionLayout'
-
-
-const capitalize = (word: string) => {
-    const firstLetter = word.slice(0, 1)
-    return firstLetter.toUpperCase() + word.slice(1)
-}
-
 
 const Product = () => {
 
@@ -30,9 +19,7 @@ const Product = () => {
 
                 </p>
                 <div className='  my-3 h-9 w-full bg-primary-100'>
-                    {/* <p className='h-3 bg-primary-100 leading-snug'></p> */}
-                    {/* <p className=' text-lg'>{`$${data?.data.price}`}</p> */}
-                </div>
+               </div>
 
                 <div>
                     <p>color: </p>

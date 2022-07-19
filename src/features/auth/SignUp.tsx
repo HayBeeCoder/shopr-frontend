@@ -66,7 +66,7 @@ const SignUp = () => {
     let { name, value } = e.target as HTMLInputElement
     let errorValue =  fieldValidator(name, value)
     e.target.addEventListener('blur' ,function(){
-      // if(error[name] == "") setShowError()
+      // if(error[name] =="") setShowError()
     } )
 
 
